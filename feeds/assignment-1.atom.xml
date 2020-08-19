@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BIOSTAT 823 - Assignment 1</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/assignment-1.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-08-18T08:30:00+00:00</updated><entry><title>Welcome to my blog!</title><link href="https://yijiehe.github.io/Hello.html" rel="alternate"></link><published>2020-08-18T08:30:00+00:00</published><updated>2020-08-18T08:30:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-08-18:/Hello.html</id><summary type="html">&lt;p class="first last"&gt;Content for first assignment&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;For this assignment, the first step is to create a repository in github named yijiehe.io which is used for Github Page, and install Pelican using pip.&lt;/p&gt;
+&lt;p&gt;Then, I clone the github repository and start a pelican site using commmand &amp;quot;pelican-quickstart&amp;quot; in the repository.&lt;/p&gt;
+&lt;p&gt;Next, inside the content folder, write this blog into a rst file, and create website using the rst file. The files for the website are saved in the output folder.&lt;/p&gt;
+&lt;p&gt;After this, install ghp-import using pip, and push the changes in output folder on local git.&lt;/p&gt;
+&lt;p&gt;The final step is push the local git change to the remote connection with git remote push.&lt;/p&gt;
+</content><category term="Assignment 1"></category><category term="Blog"></category></entry></feed>
