@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Personal Biography</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/all.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-08-18T08:30:00+00:00</updated><entry><title>Welcome to my blog!</title><link href="https://yijiehe.github.io/Hello.html" rel="alternate"></link><published>2020-08-18T08:30:00+00:00</published><updated>2020-08-18T08:30:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-08-18:/Hello.html</id><summary type="html">&lt;p class="first last"&gt;Content for first assignment&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;For this assignment, the first step is to create a repository in github named yijiehe.io which is used for Github Page, and install Pelican using pip.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Personal Biography</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/all.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-08-18T08:30:00+00:00</updated><entry><title>Welcome to my page!</title><link href="https://yijiehe.github.io/Hello.html" rel="alternate"></link><published>2020-08-18T08:30:00+00:00</published><updated>2020-08-18T08:30:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-08-18:/Hello.html</id><summary type="html">&lt;p class="first last"&gt;Content for first assignment&lt;/p&gt;
+</summary><content type="html">&lt;div class="section" id="personal-biography"&gt;
+&lt;h2&gt;Personal Biography&lt;/h2&gt;
+&lt;p&gt;Content&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="assignment-1"&gt;
+&lt;h2&gt;Assignment 1&lt;/h2&gt;
+&lt;p&gt;For this assignment, the first step is to create a repository in github named yijiehe.io which is used for Github Page, and install Pelican using pip.&lt;/p&gt;
 &lt;p&gt;Then, I clone the github repository and start a pelican site using commmand &amp;quot;pelican-quickstart&amp;quot; in the repository.&lt;/p&gt;
 &lt;p&gt;Next, inside the content folder, write this blog into a rst file, and create website using the rst file. The files for the website are saved in the output folder.&lt;/p&gt;
 &lt;p&gt;After this, install ghp-import using pip, and push the changes in output folder on local git.&lt;/p&gt;
 &lt;p&gt;The final step is push the local git change to the remote connection with &amp;quot;make github&amp;quot;, which will automatically push to remote master branch.&lt;/p&gt;
-&lt;table class="docutils field-list" frame="void" rules="none"&gt;
-&lt;col class="field-name" /&gt;
-&lt;col class="field-body" /&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr class="field"&gt;&lt;th class="field-name"&gt;category:&lt;/th&gt;&lt;td class="field-body"&gt;Project Euler&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="project-euler"&gt;
+&lt;h2&gt;Project Euler&lt;/h2&gt;
+&lt;/div&gt;
 </content><category term="Personal Profile"></category></entry></feed>
