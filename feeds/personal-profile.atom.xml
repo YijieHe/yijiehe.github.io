@@ -12,9 +12,4 @@
 &lt;p&gt;After this, install ghp-import using pip, and push the changes in output folder on local git.&lt;/p&gt;
 &lt;p&gt;The final step is push the local git change to the remote connection with &amp;quot;make github&amp;quot;, which will automatically push to remote master branch.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="project-euler"&gt;
-&lt;h2&gt;Project Euler&lt;/h2&gt;
-&lt;p&gt;&lt;a class="reference external" href="{p2.rst}/p2.rst"&gt;a link relative to the current file&lt;/a&gt;
-&lt;a class="reference external" href="{p2.rst}/p2.rst"&gt;a link relative to the content root&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
 </content><category term="Personal Profile"></category></entry></feed>

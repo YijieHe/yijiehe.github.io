@@ -3,8 +3,6 @@
 </summary><content type="html">&lt;div class="section" id="project-euler"&gt;
 &lt;h2&gt;Project Euler&lt;/h2&gt;
 &lt;p&gt;Content&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="{p1.rst}/p1.rst"&gt;a link relative to the current file&lt;/a&gt;
-&lt;a class="reference external" href="{p1.rst}/p1.rst"&gt;a link relative to the content root&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Test tag"></category></entry><entry><title>Welcome to my page!</title><link href="https://yijiehe.github.io/Hello.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/Hello.html</id><summary type="html">&lt;p class="first last"&gt;Content for first assignment&lt;/p&gt;
 </summary><content type="html">&lt;div class="section" id="personal-biography"&gt;
@@ -18,10 +16,5 @@
 &lt;p&gt;Next, inside the content folder, write this blog into a rst file, and create website using the rst file. The files for the website are saved in the output folder.&lt;/p&gt;
 &lt;p&gt;After this, install ghp-import using pip, and push the changes in output folder on local git.&lt;/p&gt;
 &lt;p&gt;The final step is push the local git change to the remote connection with &amp;quot;make github&amp;quot;, which will automatically push to remote master branch.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="project-euler"&gt;
-&lt;h2&gt;Project Euler&lt;/h2&gt;
-&lt;p&gt;&lt;a class="reference external" href="{p2.rst}/p2.rst"&gt;a link relative to the current file&lt;/a&gt;
-&lt;a class="reference external" href="{p2.rst}/p2.rst"&gt;a link relative to the content root&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Personal Profile"></category></entry></feed>
