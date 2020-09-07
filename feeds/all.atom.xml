@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>A personal site of Yijie He</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/all.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-01T00:00:00+00:00</updated><entry><title>Welcome to my page!</title><link href="https://yijiehe.github.io/Euler.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/Euler.html</id><summary type="html">&lt;p class="first last"&gt;Content for second assignment&lt;/p&gt;
-</summary><content type="html">&lt;div class="section" id="project-euler"&gt;
-&lt;h2&gt;Project Euler&lt;/h2&gt;
-&lt;pre class="code ipython3 literal-block"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A personal site of Yijie He</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/all.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-01T00:00:00+00:00</updated><entry><title>Project Euler</title><link href="https://yijiehe.github.io/Euler.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/Euler.html</id><summary type="html">&lt;p class="first last"&gt;Content for second assignment&lt;/p&gt;
+</summary><content type="html">&lt;pre class="code ipython3 literal-block"&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
 &lt;/pre&gt;
 &lt;div class="section" id="special-pythagorean-triplet"&gt;
-&lt;h3&gt;Special Pythagorean triplet&lt;/h3&gt;
+&lt;h2&gt;Special Pythagorean triplet&lt;/h2&gt;
 &lt;div class="section" id="problem-9-solved-by-356556"&gt;
-&lt;h4&gt;Problem 9: solved by 356556&lt;/h4&gt;
+&lt;h3&gt;Problem 9: solved by 356556&lt;/h3&gt;
 &lt;p&gt;A Pythagorean triplet is a set of three natural numbers, a &amp;lt; b &amp;lt; c, for
 which,&lt;/p&gt;
 &lt;p&gt;a2 + b2 = c2 For example, 32 + 42 = 9 + 16 = 25 = 52.&lt;/p&gt;
@@ -31,9 +29,9 @@ Product: 31875000
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="champernownes-constant"&gt;
-&lt;h3&gt;Champernowne’s constant&lt;/h3&gt;
+&lt;h2&gt;Champernowne’s constant&lt;/h2&gt;
 &lt;div class="section" id="problem-40-sovled-by-78632"&gt;
-&lt;h4&gt;Problem 40: sovled by 78632&lt;/h4&gt;
+&lt;h3&gt;Problem 40: sovled by 78632&lt;/h3&gt;
 &lt;p&gt;An irrational decimal fraction is created by concatenating the positive
 integers:&lt;/p&gt;
 &lt;p&gt;0.123456789101112131415161718192021…&lt;/p&gt;
@@ -65,9 +63,9 @@ The product is: 210
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="prime-summations"&gt;
-&lt;h3&gt;Prime summations&lt;/h3&gt;
+&lt;h2&gt;Prime summations&lt;/h2&gt;
 &lt;div class="section" id="problem-77-solved-by-18307"&gt;
-&lt;h4&gt;Problem 77: solved by 18307&lt;/h4&gt;
+&lt;h3&gt;Problem 77: solved by 18307&lt;/h3&gt;
 &lt;p&gt;It is possible to write ten as the sum of primes in exactly five
 different ways:&lt;/p&gt;
 &lt;p&gt;7 + 3 5 + 5 5 + 3 + 2 3 + 3 + 2 + 2 2 + 2 + 2 + 2 + 2&lt;/p&gt;
@@ -101,7 +99,6 @@ over five thousand different ways?&lt;/p&gt;
 First value written as the sum of primes
 in over 5000 ways: 71
 &lt;/pre&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </content><category term="Euler Project"></category></entry><entry><title>Welcome to my page!</title><link href="https://yijiehe.github.io/Hello.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/Hello.html</id><summary type="html">&lt;p class="first last"&gt;Content for first assignment&lt;/p&gt;
