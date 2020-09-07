@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>A personal site of Yijie He - Euler Project</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/euler-project.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-01T00:00:00+00:00</updated><entry><title>Project Euler</title><link href="https://yijiehe.github.io/Euler.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/Euler.html</id><summary type="html">&lt;p class="first last"&gt;Content for second assignment&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A personal site of Yijie He - Project Euler</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/project-euler.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-01T00:00:00+00:00</updated><entry><title>Project Euler</title><link href="https://yijiehe.github.io/Euler.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/Euler.html</id><summary type="html">&lt;p class="first last"&gt;Content for second assignment&lt;/p&gt;
 </summary><content type="html">&lt;pre class="code ipython3 literal-block"&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
@@ -101,4 +101,4 @@ in over 5000 ways: 71
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Euler Project"></category></entry></feed>
+</content><category term="Project Euler"></category></entry></feed>
