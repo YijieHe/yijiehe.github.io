@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>A personal site of Yijie He - Project Euler</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/project-euler.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-01T00:00:00+00:00</updated><entry><title>Project Euler</title><link href="https://yijiehe.github.io/Euler.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/Euler.html</id><summary type="html">&lt;p class="first last"&gt;Content for second assignment&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A personal site of Yijie He - articles</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/articles.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-01T00:00:00+00:00</updated><entry><title>Project</title><link href="https://yijiehe.github.io/articles/Project.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/articles/Project.html</id><summary type="html">&lt;p class="first last"&gt;List of projects done&lt;/p&gt;
 </summary><content type="html">&lt;pre class="code ipython3 literal-block"&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
@@ -68,7 +68,11 @@ The product is: 210
 &lt;h3&gt;Problem 77: solved by 18307&lt;/h3&gt;
 &lt;p&gt;It is possible to write ten as the sum of primes in exactly five
 different ways:&lt;/p&gt;
-&lt;p&gt;7 + 3 5 + 5 5 + 3 + 2 3 + 3 + 2 + 2 2 + 2 + 2 + 2 + 2&lt;/p&gt;
+&lt;p&gt;7 + 3
+5 + 5
+5 + 3 + 2
+3 + 3 + 2 + 2
+2 + 2 + 2 + 2 + 2&lt;/p&gt;
 &lt;p&gt;What is the first value which can be written as the sum of primes in
 over five thousand different ways?&lt;/p&gt;
 &lt;pre class="code ipython3 literal-block"&gt;
@@ -101,4 +105,4 @@ in over 5000 ways: 71
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Project Euler"></category></entry></feed>
+</content><category term="articles"></category></entry></feed>
