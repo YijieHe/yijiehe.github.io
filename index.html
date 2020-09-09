@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>A personal site of Yijie He</title>
+        <title>Personal Biography</title>
         <link rel="stylesheet" href="./theme/css/main.css" />
         <link href="https://yijiehe.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A personal site of Yijie He Atom Feed" />
 </head>
@@ -11,132 +11,26 @@
         <header id="banner" class="body">
                 <h1><a href="./">A personal site of Yijie He </a></h1>
                 <nav><ul>
-                    <li><a href="./pages/About.html">About</a></li>
+                    <li class="active"><a href="./pages/About.html">Personal Biography</a></li>
                     <li><a href="./pages/Contact.html">Contact</a></li>
-                    <li><a href="./category/articles.html">articles</a></li>
+                    <li><a href="./category/projects.html">Projects</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="./articles/Project.html">Project</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2020-09-01T00:00:00+00:00">
-                Published: Tue 01 September 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/yijie.html">Yijie</a>
-        </address>
-<p>In <a href="./category/articles.html">articles</a>.</p>
-
-</footer><!-- /.post-info --><pre class="code ipython3 literal-block">
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">math</span>
-</pre>
-<div class="section" id="special-pythagorean-triplet">
-<h2>Special Pythagorean triplet</h2>
-<div class="section" id="problem-9-solved-by-356556">
-<h3>Problem 9: solved by 356556</h3>
-<p>A Pythagorean triplet is a set of three natural numbers, a &lt; b &lt; c, for
-which,</p>
-<p>a2 + b2 = c2 For example, 32 + 42 = 9 + 16 = 25 = 52.</p>
-<p>There exists exactly one Pythagorean triplet for which a + b + c = 1000.
-Find the product abc.</p>
-<pre class="code ipython3 literal-block">
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">499</span><span class="p">)):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">499</span><span class="p">)):</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
-        <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">'Triangle sides:'</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="s1">'Product:'</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
-</pre>
-<pre class="literal-block">
-Triangle sides: 200 375 425
-Product: 31875000
-</pre>
+<section id="content" class="body">
+    <h1 class="entry-title">Personal Biography</h1>
+    
+    <p>A self-motivated and adaptable Master of Biostatistics candidate and bioengineering graduate with intercultural background and interdisciplinary research experience.
+Enthusiastic for new and challenging opportunities and fields. Currently seeking an internship in Biostatistics / Data Science.</p>
+<div class="section" id="assignment-1">
+<h2>Assignment 1</h2>
+<p>For this assignment, the first step is to create a repository in github named yijiehe.io which is used for Github Page, and install Pelican using pip.</p>
+<p>Then, I clone the github repository and start a pelican site using commmand &quot;pelican-quickstart&quot; in the repository.</p>
+<p>Next, inside the content folder, write this blog into a rst file, and create website using the rst file. The files for the website are saved in the output folder.</p>
+<p>After this, install ghp-import using pip, and push the changes in output folder on local git.</p>
+<p>The final step is push the local git change to the remote connection with &quot;make github&quot;, which will automatically push to remote master branch.</p>
 </div>
-</div>
-<div class="section" id="champernownes-constant">
-<h2>Champernowne’s constant</h2>
-<div class="section" id="problem-40-sovled-by-78632">
-<h3>Problem 40: sovled by 78632</h3>
-<p>An irrational decimal fraction is created by concatenating the positive
-integers:</p>
-<p>0.123456789101112131415161718192021…</p>
-<p>It can be seen that the 12th digit of the fractional part is 1.</p>
-<p>If dn represents the nth digit of the fractional part, find the value of
-the following expression.</p>
-<p>d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000</p>
-<pre class="code ipython3 literal-block">
-<span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="k">while</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">digit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">+</span><span class="mi">1</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">digit</span><span class="p">)</span><span class="o">*</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span>  <span class="o">&gt;=</span> <span class="mi">1000000</span> <span class="p">):</span>
-        <span class="k">break</span>
-
-<span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
-
-<span class="n">product</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">99</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">999</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">9999</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">99999</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">999999</span><span class="p">])</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">'The product is:'</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
-</pre>
-<pre class="literal-block">
-The product is: 210
-</pre>
-</div>
-</div>
-<div class="section" id="prime-summations">
-<h2>Prime summations</h2>
-<div class="section" id="problem-77-solved-by-18307">
-<h3>Problem 77: solved by 18307</h3>
-<p>It is possible to write ten as the sum of primes in exactly five
-different ways:</p>
-<p>7 + 3
-5 + 5
-5 + 3 + 2
-3 + 3 + 2 + 2
-2 + 2 + 2 + 2 + 2</p>
-<p>What is the first value which can be written as the sum of primes in
-over five thousand different ways?</p>
-<pre class="code ipython3 literal-block">
-<span class="c1"># Generate sequence of prime numbers</span>
-<span class="n">start</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">end</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">primes</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
-            <span class="k">break</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-
-<span class="c1"># Solution</span>
-<span class="n">L</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">11</span>
-<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">ways</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">target</span>
-    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">target</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">ways</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">ways</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">p</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">ways</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">:</span> <span class="k">break</span>
-    <span class="n">target</span> <span class="o">+=</span> <span class="mi">1</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First value written as the sum of primes </span><span class="se">\n</span><span class="s2">in over&quot;</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="s2">&quot;ways:&quot;</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-</pre>
-<pre class="literal-block">
-First value written as the sum of primes
-in over 5000 ways: 71
-</pre>
-</div>
-</div>
-                </article>
-            </aside><!-- /#featured -->
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
