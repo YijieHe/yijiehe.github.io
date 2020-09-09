@@ -40,13 +40,22 @@ which,</p>
 <p>There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.</p>
 <pre class="code ipython3 literal-block">
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">499</span><span class="p">)):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">499</span><span class="p">)):</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
-        <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">'Triangle sides:'</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="s1">'Product:'</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">find_pyth_trip</span><span class="p">():</span>
+    <span class="sd">'''
+    A function to find a special pythagorean triplet without any input
+
+    The special triangle: a + b + c = 1000
+    '''</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">499</span><span class="p">)):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">499</span><span class="p">)):</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">'Triangle sides:'</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="s1">'Product:'</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">find_pyth_trip</span><span class="p">()</span>
 </pre>
 <pre class="literal-block">
 Triangle sides: 200 375 425
@@ -66,22 +75,29 @@ integers:</p>
 the following expression.</p>
 <p>d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000</p>
 <pre class="code ipython3 literal-block">
-<span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">def</span> <span class="nf">find_cham_product</span><span class="p">():</span>
+    <span class="sd">'''
+    A function to find product of Champernowne's constant at specified digits without any input
+    '''</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="k">while</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">digit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">+</span><span class="mi">1</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">digit</span><span class="p">)</span><span class="o">*</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span>  <span class="o">&gt;=</span> <span class="mi">1000000</span> <span class="p">):</span>
-        <span class="k">break</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">digit</span><span class="p">)</span><span class="o">*</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span>  <span class="o">&gt;=</span> <span class="mi">1000000</span> <span class="p">):</span>
+            <span class="k">break</span>
 
-<span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 
-<span class="n">product</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">99</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">999</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">9999</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">99999</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">999999</span><span class="p">])</span>
+    <span class="n">product</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">99</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">999</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">9999</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">99999</span><span class="p">])</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">999999</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">'The product is:'</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'The product is:'</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">find_cham_product</span><span class="p">()</span>
 </pre>
 <pre class="literal-block">
 The product is: 210
@@ -94,25 +110,40 @@ The product is: 210
 <h3>Problem 77: solved by 18307</h3>
 <p>It is possible to write ten as the sum of primes in exactly five
 different ways:</p>
-<p>7 + 3
-5 + 5
-5 + 3 + 2
-3 + 3 + 2 + 2
-2 + 2 + 2 + 2 + 2</p>
+<div class="line-block">
+<div class="line">7 + 3</div>
+<div class="line">5 + 5</div>
+<div class="line">5 + 3 + 2</div>
+<div class="line">3 + 3 + 2 + 2</div>
+<div class="line">2 + 2 + 2 + 2 + 2</div>
+</div>
 <p>What is the first value which can be written as the sum of primes in
 over five thousand different ways?</p>
+<pre class="code ipython3 literal-block">
+<span class="k">def</span> <span class="nf">prime_gen</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="sd">'''
+    A function to generate prime numbers given an interval
+
+    start is the starting number, end is the ending number
+    '''</span>
+    <span class="n">primes</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">primes</span>
+</pre>
 <pre class="code ipython3 literal-block">
 <span class="c1"># Generate sequence of prime numbers</span>
 <span class="n">start</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">end</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">primes</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
-            <span class="k">break</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-
+<span class="n">primes</span> <span class="o">=</span> <span class="n">prime_gen</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+</pre>
+<pre class="code ipython3 literal-block">
 <span class="c1"># Solution</span>
 <span class="n">L</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">11</span>
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
