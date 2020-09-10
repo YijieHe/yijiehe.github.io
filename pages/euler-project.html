@@ -39,10 +39,16 @@ which,</p>
 <p>a2 + b2 = c2 For example, 32 + 42 = 9 + 16 = 25 = 52.</p>
 <p>There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.</p>
+<div class="section" id="idea">
+<h4>Idea:</h4>
+<p>To solve the problem, loop over all possible values of a, b, c, until
+the condition is satisfied.</p>
+<p>The loop limits are set to 499, which is the limit for a, b, c to form a
+triangle.</p>
 <pre class="code ipython3 literal-block">
 <span class="k">def</span> <span class="nf">find_pyth_trip</span><span class="p">():</span>
     <span class="sd">'''
-    A function to find a special pythagorean triplet without any input
+    A function to find a special pythagorean triplet without any input.
 
     The special triangle: a + b + c = 1000
     '''</span>
@@ -63,6 +69,7 @@ Product: 31875000
 </pre>
 </div>
 </div>
+</div>
 <div class="section" id="champernownes-constant">
 <h2>Champernowne’s constant</h2>
 <div class="section" id="problem-40-sovled-by-78632">
@@ -74,10 +81,16 @@ integers:</p>
 <p>If dn represents the nth digit of the fractional part, find the value of
 the following expression.</p>
 <p>d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000</p>
+<div class="section" id="id1">
+<h4>Idea:</h4>
+<p>The Champernowne’s constant is appending the natural numbers to decimal
+point.</p>
+<p>So, keep adding the natural numbers until we get the desired digits,
+and, find the product.</p>
 <pre class="code ipython3 literal-block">
 <span class="k">def</span> <span class="nf">find_cham_product</span><span class="p">():</span>
     <span class="sd">'''
-    A function to find product of Champernowne's constant at specified digits without any input
+    A function to find product of Champernowne's constant at specified digits without any input.
     '''</span>
     <span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
@@ -104,6 +117,7 @@ The product is: 210
 </pre>
 </div>
 </div>
+</div>
 <div class="section" id="prime-summations">
 <h2>Prime summations</h2>
 <div class="section" id="problem-77-solved-by-18307">
@@ -119,10 +133,17 @@ different ways:</p>
 </div>
 <p>What is the first value which can be written as the sum of primes in
 over five thousand different ways?</p>
+<div class="section" id="id2">
+<h4>Idea:</h4>
+<p>ref: <a class="reference external" href="https://oeis.org/A000607">The OEIS Foundation</a></p>
+<p>Starting from a small number, which was chosen according to the
+reference, and find all ways of summation.</p>
+<p>Then, increase the value and put it in the same loop. The algorythm is
+described in the reference.</p>
 <pre class="code ipython3 literal-block">
 <span class="k">def</span> <span class="nf">prime_gen</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
     <span class="sd">'''
-    A function to generate prime numbers given an interval
+    A function to generate prime numbers given an interval.
 
     start is the starting number, end is the ending number
     '''</span>
@@ -154,12 +175,14 @@ over five thousand different ways?</p>
     <span class="k">if</span> <span class="n">ways</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">:</span> <span class="k">break</span>
     <span class="n">target</span> <span class="o">+=</span> <span class="mi">1</span>
 
+
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First value written as the sum of primes </span><span class="se">\n</span><span class="s2">in over&quot;</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="s2">&quot;ways:&quot;</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 </pre>
 <pre class="literal-block">
 First value written as the sum of primes
 in over 5000 ways: 71
 </pre>
+</div>
 </div>
 </div>
 
