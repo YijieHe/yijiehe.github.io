@@ -1,22 +1,352 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/all.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-01T00:00:00+00:00</updated><entry><title>Project</title><link href="https://yijiehe.github.io/articles/Project.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/articles/Project.html</id><summary type="html">&lt;p class="first last"&gt;List of projects done&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;List of data science projects.
-&lt;a class="reference external" href="https://github.com/YijieHe/biostat-823-assignments"&gt;Github repository&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/all.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-19T00:00:00+00:00</updated><entry><title>Visualize malaria datasets</title><link href="https://yijiehe.github.io/articles/visualize-malaria-datasets.html" rel="alternate"></link><published>2020-09-19T00:00:00+00:00</published><updated>2020-09-19T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-19:/articles/visualize-malaria-datasets.html</id><summary type="html">&lt;p class="first last"&gt;Visualization of malaria data&lt;/p&gt;
+</summary><content type="html">&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="preview-dataset"&gt;
+&lt;h2&gt;Preview dataset&lt;/h2&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;div class="section" id="malaria-death-by-country-across-the-world-and-time"&gt;
+&lt;h3&gt;Malaria death by country across the world and time&lt;/h3&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="29%" /&gt;
+&lt;col width="16%" /&gt;
+&lt;col width="16%" /&gt;
+&lt;col width="40%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Entity&lt;/th&gt;
+&lt;th class="head"&gt;Code&lt;/th&gt;
+&lt;th class="head"&gt;Year&lt;/th&gt;
+&lt;th class="head"&gt;Deaths/100,000&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1990&lt;/td&gt;
+&lt;td&gt;6.802930&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1991&lt;/td&gt;
+&lt;td&gt;6.973494&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1992&lt;/td&gt;
+&lt;td&gt;6.989882&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1993&lt;/td&gt;
+&lt;td&gt;7.088983&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1994&lt;/td&gt;
+&lt;td&gt;7.392472&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="malaria-death-across-the-world-by-age-group-country-and-time"&gt;
+&lt;h3&gt;Malaria death across the world by age group, country and time&lt;/h3&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="14%" /&gt;
+&lt;col width="14%" /&gt;
+&lt;col width="24%" /&gt;
+&lt;col width="24%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Entity&lt;/th&gt;
+&lt;th class="head"&gt;Code&lt;/th&gt;
+&lt;th class="head"&gt;Year&lt;/th&gt;
+&lt;th class="head"&gt;age_group&lt;/th&gt;
+&lt;th class="head"&gt;Deaths&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1990&lt;/td&gt;
+&lt;td&gt;Under 5&lt;/td&gt;
+&lt;td&gt;184.606435&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1991&lt;/td&gt;
+&lt;td&gt;Under 5&lt;/td&gt;
+&lt;td&gt;191.658193&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1992&lt;/td&gt;
+&lt;td&gt;Under 5&lt;/td&gt;
+&lt;td&gt;197.140197&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1993&lt;/td&gt;
+&lt;td&gt;Under 5&lt;/td&gt;
+&lt;td&gt;207.357753&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;1994&lt;/td&gt;
+&lt;td&gt;Under 5&lt;/td&gt;
+&lt;td&gt;226.209363&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="malaria-incidence-across-the-world-by-country-and-time"&gt;
+&lt;h3&gt;Malaria incidence across the world by country and time&lt;/h3&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="27%" /&gt;
+&lt;col width="15%" /&gt;
+&lt;col width="15%" /&gt;
+&lt;col width="44%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Entity&lt;/th&gt;
+&lt;th class="head"&gt;Code&lt;/th&gt;
+&lt;th class="head"&gt;Year&lt;/th&gt;
+&lt;th class="head"&gt;Incidence/100,000&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;2000&lt;/td&gt;
+&lt;td&gt;107.100000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;2005&lt;/td&gt;
+&lt;td&gt;46.500000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;2010&lt;/td&gt;
+&lt;td&gt;23.900000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Afghanistan&lt;/td&gt;
+&lt;td&gt;AFG&lt;/td&gt;
+&lt;td&gt;2015&lt;/td&gt;
+&lt;td&gt;23.600000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Algeria&lt;/td&gt;
+&lt;td&gt;DZA&lt;/td&gt;
+&lt;td&gt;2000&lt;/td&gt;
+&lt;td&gt;0.037746&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr class="docutils" /&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="visualization"&gt;
+&lt;h2&gt;Visualization&lt;/h2&gt;
+&lt;div class="section" id="mapping-for-incidence-data-by-country"&gt;
+&lt;h3&gt;Mapping for incidence data by country&lt;/h3&gt;
+&lt;img alt="mapplot of malaria incidence across the world." src="/images/worldmap_inc.png" /&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="mapping-for-annual-death-data"&gt;
+&lt;h3&gt;Mapping for annual death data&lt;/h3&gt;
+&lt;img alt="" src="/images/worldmap_death.png" /&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="worldwise-death-from-malaria-summary-by-age-group"&gt;
+&lt;h3&gt;Worldwise death from malaria summary by age group&lt;/h3&gt;
+&lt;img alt="" src="/images/age_group.png" /&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="malaria-incidence-of-by-income-group"&gt;
+&lt;h3&gt;Malaria incidence of by income group&lt;/h3&gt;
+&lt;img alt="" src="/images/income_group.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Projects"></category></entry><entry><title>Euler project</title><link href="https://yijiehe.github.io/articles/euler-project.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/articles/euler-project.html</id><summary type="html">&lt;p class="first last"&gt;Solutions of three Euler Project&lt;/p&gt;
+</summary><content type="html">&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="section" id="special-pythagorean-triplet"&gt;
+&lt;h2&gt;Special Pythagorean triplet&lt;/h2&gt;
+&lt;div class="section" id="problem-9-solved-by-356556"&gt;
+&lt;h3&gt;Problem 9: solved by 356556&lt;/h3&gt;
+&lt;p&gt;A Pythagorean triplet is a set of three natural numbers, a &amp;lt; b &amp;lt; c, for
+which,&lt;/p&gt;
+&lt;p&gt;a2 + b2 = c2 For example, 32 + 42 = 9 + 16 = 25 = 52.&lt;/p&gt;
+&lt;p&gt;There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Find the product abc.&lt;/p&gt;
+&lt;div class="section" id="idea"&gt;
+&lt;h4&gt;Idea:&lt;/h4&gt;
+&lt;p&gt;To solve the problem, loop over all possible values of a, b, c, until
+the condition is satisfied.&lt;/p&gt;
+&lt;p&gt;The loop limits are set to 499, which is the limit for a, b, c to form a
+triangle.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;find_pyth_trip&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="sd"&gt;'''
+    A function to find a special pythagorean triplet without any input.
+
+    The special triangle: a + b + c = 1000
+    '''&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;499&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;499&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+            &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+            &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Triangle sides:'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="s1"&gt;'Product:'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;find_pyth_trip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+Triangle sides: 200 375 425
+Product: 31875000
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="champernownes-constant"&gt;
+&lt;h2&gt;Champernowne’s constant&lt;/h2&gt;
+&lt;div class="section" id="problem-40-sovled-by-78632"&gt;
+&lt;h3&gt;Problem 40: sovled by 78632&lt;/h3&gt;
+&lt;p&gt;An irrational decimal fraction is created by concatenating the positive
+integers:&lt;/p&gt;
+&lt;p&gt;0.123456789101112131415161718192021…&lt;/p&gt;
+&lt;p&gt;It can be seen that the 12th digit of the fractional part is 1.&lt;/p&gt;
+&lt;p&gt;If dn represents the nth digit of the fractional part, find the value of
+the following expression.&lt;/p&gt;
+&lt;p&gt;d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000&lt;/p&gt;
 &lt;div class="section" id="id1"&gt;
-&lt;h2&gt;&lt;a class="reference external" href="https://yijiehe.github.io/pages/euler-project.html"&gt;Three problems from Euler Project:&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Sovled 3 problems from the &lt;a class="reference external" href="https://projecteuler.net"&gt;Euler Project&lt;/a&gt; using Python.
-Of the 3 problems, one has been solved by fewer than 25,000 people, 1 fewer than 100,000 people and one fewer than 500,000 people&lt;/p&gt;
+&lt;h4&gt;Idea:&lt;/h4&gt;
+&lt;p&gt;The Champernowne’s constant is appending the natural numbers to decimal
+point.&lt;/p&gt;
+&lt;p&gt;So, keep adding the natural numbers until we get the desired digits,
+and, find the product.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;find_cham_product&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="sd"&gt;'''
+    A function to find product of Champernowne's constant at specified digits without any input.
+    '''&lt;/span&gt;
+    &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;digit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log10&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000000&lt;/span&gt; &lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;break&lt;/span&gt;
+
+    &lt;span class="n"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="n"&gt;product&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;999&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;9999&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;99999&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;999999&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'The product is:'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;product&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;find_cham_product&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+The product is: 210
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="prime-summations"&gt;
+&lt;h2&gt;Prime summations&lt;/h2&gt;
+&lt;div class="section" id="problem-77-solved-by-18307"&gt;
+&lt;h3&gt;Problem 77: solved by 18307&lt;/h3&gt;
+&lt;p&gt;It is possible to write ten as the sum of primes in exactly five
+different ways:&lt;/p&gt;
 &lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;7 + 3&lt;/div&gt;
+&lt;div class="line"&gt;5 + 5&lt;/div&gt;
+&lt;div class="line"&gt;5 + 3 + 2&lt;/div&gt;
+&lt;div class="line"&gt;3 + 3 + 2 + 2&lt;/div&gt;
+&lt;div class="line"&gt;2 + 2 + 2 + 2 + 2&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;What is the first value which can be written as the sum of primes in
+over five thousand different ways?&lt;/p&gt;
 &lt;div class="section" id="id2"&gt;
-&lt;h2&gt;&lt;a class="reference external" href="https://yijiehe.github.io/pages/visualize-malaria-datasets.html"&gt;Visualization of worldwide malaria data&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Some visualazation of glocal malaria datasets with &amp;quot;pandas.bokeh&amp;quot; and &amp;quot;plotnine&amp;quot;.
-The original datasets are part of the &lt;a class="reference external" href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-11-13"&gt;TidyTuesday&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Idea:&lt;/h4&gt;
+&lt;p&gt;ref: &lt;a class="reference external" href="https://oeis.org/A000607"&gt;The OEIS Foundation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Starting from a small number, which was chosen according to the
+reference, and find all ways of summation.&lt;/p&gt;
+&lt;p&gt;Then, increase the value and put it in the same loop. The algorythm is
+described in the reference.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;prime_gen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;'''
+    A function to generate prime numbers given an interval.
+
+    start is the starting number, end is the ending number
+    '''&lt;/span&gt;
+    &lt;span class="n"&gt;primes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;break&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;primes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;primes&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="c1"&gt;# Generate sequence of prime numbers&lt;/span&gt;
+&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+&lt;span class="n"&gt;primes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;prime_gen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="c1"&gt;# Solution&lt;/span&gt;
+&lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;ways&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;primes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;ways&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;ways&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ways&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt;
+    &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;First value written as the sum of primes &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;in over&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ways:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+First value written as the sum of primes
+in over 5000 ways: 71
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </content><category term="Projects"></category></entry></feed>
