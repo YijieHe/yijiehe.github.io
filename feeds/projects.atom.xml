@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He - Projects</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/projects.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-01T00:00:00+00:00</updated><entry><title>Project</title><link href="https://yijiehe.github.io/articles/Project.html" rel="alternate"></link><published>2020-09-01T00:00:00+00:00</published><updated>2020-09-01T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-01:/articles/Project.html</id><summary type="html">&lt;p class="first last"&gt;List of projects done&lt;/p&gt;
-</summary><content type="html">&lt;div class="section" id="euler-projects"&gt;
-&lt;h2&gt;Euler Projects:&lt;/h2&gt;
-&lt;p&gt;Sovled 3 problems from the &lt;a class="reference external" href="https://projecteuler.net/archives/"&gt;Euler Project&lt;/a&gt; using Python.
+</summary><content type="html">&lt;p&gt;List of data science projects.
+&lt;a class="reference external" href="https://github.com/YijieHe/biostat-823-assignments"&gt;Github repository&lt;/a&gt;&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://yijiehe.github.io/pages/euler-project.html"&gt;Three problems from Euler Project:&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Sovled 3 problems from the &lt;a class="reference external" href="https://projecteuler.net"&gt;Euler Project&lt;/a&gt; using Python.
 Of the 3 problems, one has been solved by fewer than 25,000 people, 1 fewer than 100,000 people and one fewer than 500,000 people&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://yijiehe.github.io/pages/euler-project.html"&gt;Click here to see the codes&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://github.com/YijieHe/biostat-823-assignments"&gt;Link to Github repository&lt;/a&gt;&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://yijiehe.github.io/pages/visualize-malaria-datasets.html"&gt;Visualization of worldwide malaria data&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Some visualazation of glocal malaria datasets with &amp;quot;pandas.bokeh&amp;quot; and &amp;quot;plotnine&amp;quot;.
+The original datasets are part of the &lt;a class="reference external" href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-11-13"&gt;TidyTuesday&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Projects"></category></entry></feed>

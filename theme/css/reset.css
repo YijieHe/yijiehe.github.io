@@ -16,7 +16,7 @@ dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
 	background: transparent;
-	border: 0;
+	border: 1;
 	font-size: 100%;
 	margin: 0;
 	outline: 0;
