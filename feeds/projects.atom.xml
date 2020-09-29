@@ -3,13 +3,21 @@
 </summary><content type="html">&lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;div class="section" id="overview"&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-11-13"&gt;original dataset&lt;/a&gt;
+is part of Tidytuesday weekly data projects. It contains 3 tables, which inclde worldwide malaria death rate
+and incidence from 1990 to 2016.&lt;/p&gt;
+&lt;p&gt;The visualizations were plotted with &lt;strong&gt;pandas_bokeh&lt;/strong&gt; and &lt;strong&gt;plotnine&lt;/strong&gt; packages. Pandas_bokeh provides powerful
+tools for interactive mapping plot. For the death rate and incidence mapping, there are slider bars that enable
+users to scroll over years to see status for each country. Plotnine is a declarative system of creating graphics
+based on &lt;a class="reference external" href="https://ggplot2.tidyverse.org"&gt;ggplot&lt;/a&gt;. As an implementation of Grammar of Graphics, it allows users to
+create graphics explicitly.&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class="section" id="preview-dataset"&gt;
 &lt;h2&gt;Preview dataset&lt;/h2&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;div class="section" id="malaria-death-by-country-across-the-world-and-time"&gt;
-&lt;h3&gt;Malaria death by country across the world and time&lt;/h3&gt;
+&lt;h3&gt;&lt;em&gt;Malaria death by country across the world and time&lt;/em&gt;&lt;/h3&gt;
 &lt;table border="1" class="docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="29%" /&gt;
@@ -57,7 +65,7 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="malaria-death-across-the-world-by-age-group-country-and-time"&gt;
-&lt;h3&gt;Malaria death across the world by age group, country and time&lt;/h3&gt;
+&lt;h3&gt;&lt;em&gt;Malaria death across the world by age group, country and time&lt;/em&gt;&lt;/h3&gt;
 &lt;table border="1" class="docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="25%" /&gt;
@@ -112,7 +120,7 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="malaria-incidence-across-the-world-by-country-and-time"&gt;
-&lt;h3&gt;Malaria incidence across the world by country and time&lt;/h3&gt;
+&lt;h3&gt;&lt;em&gt;Malaria incidence across the world by country and time&lt;/em&gt;&lt;/h3&gt;
 &lt;table border="1" class="docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="27%" /&gt;
@@ -163,29 +171,29 @@
 &lt;/div&gt;
 &lt;div class="section" id="visualization"&gt;
 &lt;h2&gt;Visualization&lt;/h2&gt;
-&lt;div class="section" id="mapping-for-incidence-data-by-country"&gt;
-&lt;h3&gt;Mapping for incidence data by country&lt;/h3&gt;
+&lt;div class="section" id="mapping-malaria-incidence-by-country"&gt;
+&lt;h3&gt;&lt;em&gt;Mapping malaria incidence by country&lt;/em&gt;&lt;/h3&gt;
 &lt;img alt="mapplot of malaria incidence across the world." src="/images/worldmap_inc.png" /&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="section" id="mapping-for-annual-death-data"&gt;
-&lt;h3&gt;Mapping for annual death data&lt;/h3&gt;
+&lt;div class="section" id="mapping-annual-death-rate-from-malaria-by-country"&gt;
+&lt;h3&gt;&lt;em&gt;Mapping annual death rate from malaria by country&lt;/em&gt;&lt;/h3&gt;
 &lt;img alt="" src="/images/worldmap_death.png" /&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="section" id="worldwise-death-from-malaria-summary-by-age-group"&gt;
-&lt;h3&gt;Worldwise death from malaria summary by age group&lt;/h3&gt;
+&lt;div class="section" id="worldwide-death-from-malaria-summary-by-age-group"&gt;
+&lt;h3&gt;&lt;em&gt;Worldwide death from malaria summary by age group&lt;/em&gt;&lt;/h3&gt;
 &lt;img alt="" src="/images/age_group.png" /&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="malaria-incidence-of-by-income-group"&gt;
-&lt;h3&gt;Malaria incidence of by income group&lt;/h3&gt;
+&lt;h3&gt;&lt;em&gt;Malaria incidence of by income group&lt;/em&gt;&lt;/h3&gt;
 &lt;img alt="" src="/images/income_group.png" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
