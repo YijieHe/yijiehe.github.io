@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="../theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="https://yijiehe.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Yijie He Atom">
+
+
+
+
+
+<meta name="author" content="Yijie" />
+<meta name="description" content="Convert pandas dataframe to sql database" />
+<meta name="keywords" content="">
+
+<meta property="og:site_name" content="Yijie He"/>
+<meta property="og:title" content="Construct a SQL Database of Spotify Songs in 3rd Normal Form (3NF)"/>
+<meta property="og:description" content="Convert pandas dataframe to sql database"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="../articles/construct-a-sql-database-of-spotify-songs-in-3rd-normal-form-3nf.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-10-06 00:00:00+00:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="../author/yijie.html">
+<meta property="article:section" content="Projects"/>
+<meta property="og:image" content="">
+
+  <title>Yijie He &ndash; Construct a SQL Database of Spotify Songs in 3rd Normal Form (3NF)</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="..">
+        <img src="../theme/img/profile.png" alt="" title="">
+      </a>
+      <h1><a href=".."></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="../pages/About.html#About">About</a></li>
+          <li><a href="../pages/Contact.html#Contact">Contact</a></li>
+          <li><a href="../pages/Project.html#Project">Project</a></li>
+
+          <li><a href="https://www.linkedin.com/in/yijie-he/" target="_blank">LinkedIn</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+      
+    <h1 id="construct-a-sql-database-of-spotify-songs-in-3rd-normal-form-3nf">Construct a SQL Database of Spotify Songs in 3rd Normal Form (3NF)</h1>
+    <p>
+          Posted on Tue 06 October 2020 in <a href="../category/projects.html">Projects</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <div class="section" id="data-nomalization">
+<h2>Data Nomalization</h2>
+<p>Database Normalization is a technique of organizing the data in the database. Normalization is a systematic
+approach of decomposing tables to eliminate data redundancy(repetition) and undesirable characteristics
+like Insertion, Update and Deletion Anomalies. It is a multi-step process that puts data into tabular form,
+removing duplicated data from the relation tables.</p>
+<p>Normalization is used for mainly two purposes,</p>
+<ul class="simple">
+<li>Eliminating redundant(useless) data.</li>
+<li>Ensuring data dependencies make sense i.e data is logically stored.</li>
+</ul>
+<div class="section" id="first-normal-form-1nf">
+<h3>First normal form (1NF)</h3>
+<p>For a table to be in the First Normal Form, it should follow the following 4 rules:</p>
+<ul class="simple">
+<li>It should only have single(atomic) valued attributes/columns.</li>
+<li>Values stored in a column should be of the same domain</li>
+<li>All the columns in a table should have unique names.</li>
+<li>And the order in which data is stored, does not matter.</li>
+</ul>
+</div>
+<div class="section" id="second-normal-form-2nf">
+<h3>Second normal form (2NF)</h3>
+<p>For a table to be in the Second Normal Form,</p>
+<ul class="simple">
+<li>It should be in the First Normal form.</li>
+<li>And, it should not have Partial Dependency.</li>
+</ul>
+</div>
+<div class="section" id="third-normal-form-3nf">
+<h3>Third normal form (3NF)</h3>
+<p>A table is said to be in the Third Normal Form when,</p>
+<ul class="simple">
+<li>It is in the Second Normal form.</li>
+<li>And, it doesn't have Transitive Dependency.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-spotify-songs-dataset">
+<h2>The Spotify Songs Dataset</h2>
+<p>The original data can be found <a class="reference external" href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md">here</a></p>
+<p>Let's see how it looks like:</p>
+<pre class="code ipython3 literal-block">
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>track_id</th>
+      <th>track_name</th>
+      <th>track_artist</th>
+      <th>track_popularity</th>
+      <th>track_album_id</th>
+      <th>track_album_name</th>
+      <th>track_album_release_date</th>
+      <th>playlist_name</th>
+      <th>playlist_id</th>
+      <th>playlist_genre</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>duration_ms</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6f807x0ima9a1j3VPbc7VN</td>
+      <td>I Don't Care (with Justin Bieber) - Loud Luxur...</td>
+      <td>Ed Sheeran</td>
+      <td>66</td>
+      <td>2oCs0DGTsRO98Gh5ZSl2Cx</td>
+      <td>I Don't Care (with Justin Bieber) [Loud Luxury...</td>
+      <td>2019-06-14</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>6</td>
+      <td>-2.634</td>
+      <td>1</td>
+      <td>0.0583</td>
+      <td>0.1020</td>
+      <td>0.000000</td>
+      <td>0.0653</td>
+      <td>0.518</td>
+      <td>122.036</td>
+      <td>194754</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0r7CVbZTWZgbTCYdfa2P31</td>
+      <td>Memories - Dillon Francis Remix</td>
+      <td>Maroon 5</td>
+      <td>67</td>
+      <td>63rPSO264uRjW1X5E6cWv6</td>
+      <td>Memories (Dillon Francis Remix)</td>
+      <td>2019-12-13</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>11</td>
+      <td>-4.969</td>
+      <td>1</td>
+      <td>0.0373</td>
+      <td>0.0724</td>
+      <td>0.004210</td>
+      <td>0.3570</td>
+      <td>0.693</td>
+      <td>99.972</td>
+      <td>162600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1z1Hg7Vb0AhHDiEmnDE79l</td>
+      <td>All the Time - Don Diablo Remix</td>
+      <td>Zara Larsson</td>
+      <td>70</td>
+      <td>1HoSmj2eLcsrR0vE9gThr4</td>
+      <td>All the Time (Don Diablo Remix)</td>
+      <td>2019-07-05</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>1</td>
+      <td>-3.432</td>
+      <td>0</td>
+      <td>0.0742</td>
+      <td>0.0794</td>
+      <td>0.000023</td>
+      <td>0.1100</td>
+      <td>0.613</td>
+      <td>124.008</td>
+      <td>176616</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>75FpbthrwQmzHlBJLuGdC7</td>
+      <td>Call You Mine - Keanu Silva Remix</td>
+      <td>The Chainsmokers</td>
+      <td>60</td>
+      <td>1nqYsOef1yKKuGOVchbsk6</td>
+      <td>Call You Mine - The Remixes</td>
+      <td>2019-07-19</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>7</td>
+      <td>-3.778</td>
+      <td>1</td>
+      <td>0.1020</td>
+      <td>0.0287</td>
+      <td>0.000009</td>
+      <td>0.2040</td>
+      <td>0.277</td>
+      <td>121.956</td>
+      <td>169093</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1e8PAfcKUYoKkxPhrHqw4x</td>
+      <td>Someone You Loved - Future Humans Remix</td>
+      <td>Lewis Capaldi</td>
+      <td>69</td>
+      <td>7m7vv9wlQ4i0LFuJiE2zsQ</td>
+      <td>Someone You Loved (Future Humans Remix)</td>
+      <td>2019-03-05</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>1</td>
+      <td>-4.672</td>
+      <td>1</td>
+      <td>0.0359</td>
+      <td>0.0803</td>
+      <td>0.000000</td>
+      <td>0.0833</td>
+      <td>0.725</td>
+      <td>123.976</td>
+      <td>189052</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The columns of the data are:</p>
+<pre class="code ipython3 literal-block">
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre>
+<pre class="literal-block">
+Index(['track_id', 'track_name', 'track_artist', 'track_popularity',
+       'track_album_id', 'track_album_name', 'track_album_release_date',
+       'playlist_name', 'playlist_id', 'playlist_genre', 'playlist_subgenre',
+       'danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',
+       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',
+       'duration_ms'],
+      dtype='object')
+</pre>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Data Nomalization</h2>
+<p>Since the original data columns are single valued, and the all columns contain information in the same
+domain, it is in 1NF. However, it is obvious that the Spotify dataframe has information about these fields:
+<strong>track</strong>, <strong>album</strong> and <strong>playlists</strong>. In addition, notice that <strong>subgenre</strong> also depends on the <strong>genre</strong> column.
+So we need to seperate these information into different tables.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">track</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">22</span><span class="p">]]</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">album</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">'track_album_id'</span><span class="p">,</span> <span class="s1">'track_album_name'</span><span class="p">,</span> <span class="s1">'track_album_release_date'</span><span class="p">]]</span>
+         <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="s1">'track_album_id'</span><span class="p">)</span>
+        <span class="p">)</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">playlist</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">'playlist_id'</span><span class="p">,</span><span class="s1">'playlist_name'</span><span class="p">,</span> <span class="s1">'playlist_subgenre'</span><span class="p">]]</span>
+            <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="s1">'playlist_id'</span><span class="p">)</span>
+           <span class="p">)</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">genre</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">'playlist_subgenre'</span><span class="p">,</span> <span class="s1">'playlist_genre'</span><span class="p">]]</span>
+         <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="s1">'playlist_subgenre'</span><span class="p">)</span>
+        <span class="p">)</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">album</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now we have 4 dataframes. Let's look at them.</p>
+<p>The <strong>track</strong> table has all the information about a single song besides album and playlist.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">track</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>track_id</th>
+      <th>track_name</th>
+      <th>track_artist</th>
+      <th>track_popularity</th>
+      <th>track_album_id</th>
+      <th>playlist_id</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>duration_ms</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6f807x0ima9a1j3VPbc7VN</td>
+      <td>I Don't Care (with Justin Bieber) - Loud Luxur...</td>
+      <td>Ed Sheeran</td>
+      <td>66</td>
+      <td>2oCs0DGTsRO98Gh5ZSl2Cx</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>0.748</td>
+      <td>0.916</td>
+      <td>6</td>
+      <td>-2.634</td>
+      <td>1</td>
+      <td>0.0583</td>
+      <td>0.1020</td>
+      <td>0.000000</td>
+      <td>0.0653</td>
+      <td>0.518</td>
+      <td>122.036</td>
+      <td>194754</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0r7CVbZTWZgbTCYdfa2P31</td>
+      <td>Memories - Dillon Francis Remix</td>
+      <td>Maroon 5</td>
+      <td>67</td>
+      <td>63rPSO264uRjW1X5E6cWv6</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>0.726</td>
+      <td>0.815</td>
+      <td>11</td>
+      <td>-4.969</td>
+      <td>1</td>
+      <td>0.0373</td>
+      <td>0.0724</td>
+      <td>0.004210</td>
+      <td>0.3570</td>
+      <td>0.693</td>
+      <td>99.972</td>
+      <td>162600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1z1Hg7Vb0AhHDiEmnDE79l</td>
+      <td>All the Time - Don Diablo Remix</td>
+      <td>Zara Larsson</td>
+      <td>70</td>
+      <td>1HoSmj2eLcsrR0vE9gThr4</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>0.675</td>
+      <td>0.931</td>
+      <td>1</td>
+      <td>-3.432</td>
+      <td>0</td>
+      <td>0.0742</td>
+      <td>0.0794</td>
+      <td>0.000023</td>
+      <td>0.1100</td>
+      <td>0.613</td>
+      <td>124.008</td>
+      <td>176616</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>75FpbthrwQmzHlBJLuGdC7</td>
+      <td>Call You Mine - Keanu Silva Remix</td>
+      <td>The Chainsmokers</td>
+      <td>60</td>
+      <td>1nqYsOef1yKKuGOVchbsk6</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>0.718</td>
+      <td>0.930</td>
+      <td>7</td>
+      <td>-3.778</td>
+      <td>1</td>
+      <td>0.1020</td>
+      <td>0.0287</td>
+      <td>0.000009</td>
+      <td>0.2040</td>
+      <td>0.277</td>
+      <td>121.956</td>
+      <td>169093</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1e8PAfcKUYoKkxPhrHqw4x</td>
+      <td>Someone You Loved - Future Humans Remix</td>
+      <td>Lewis Capaldi</td>
+      <td>69</td>
+      <td>7m7vv9wlQ4i0LFuJiE2zsQ</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>0.650</td>
+      <td>0.833</td>
+      <td>1</td>
+      <td>-4.672</td>
+      <td>1</td>
+      <td>0.0359</td>
+      <td>0.0803</td>
+      <td>0.000000</td>
+      <td>0.0833</td>
+      <td>0.725</td>
+      <td>123.976</td>
+      <td>189052</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The <strong>album</strong> table has each album's name and date.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">album</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>track_album_id</th>
+      <th>track_album_name</th>
+      <th>track_album_release_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2oCs0DGTsRO98Gh5ZSl2Cx</td>
+      <td>I Don't Care (with Justin Bieber) [Loud Luxury...</td>
+      <td>2019-06-14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>63rPSO264uRjW1X5E6cWv6</td>
+      <td>Memories (Dillon Francis Remix)</td>
+      <td>2019-12-13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1HoSmj2eLcsrR0vE9gThr4</td>
+      <td>All the Time (Don Diablo Remix)</td>
+      <td>2019-07-05</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1nqYsOef1yKKuGOVchbsk6</td>
+      <td>Call You Mine - The Remixes</td>
+      <td>2019-07-19</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7m7vv9wlQ4i0LFuJiE2zsQ</td>
+      <td>Someone You Loved (Future Humans Remix)</td>
+      <td>2019-03-05</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The <strong>playlist</strong> table has each playlist's name and genre.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">playlist</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>playlist_id</th>
+      <th>playlist_name</th>
+      <th>playlist_subgenre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>Pop Remix</td>
+      <td>dance pop</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>37i9dQZF1DWZQaaqNMbbXa</td>
+      <td>Dance Pop</td>
+      <td>dance pop</td>
+    </tr>
+    <tr>
+      <th>167</th>
+      <td>37i9dQZF1DX2ENAPP1Tyed</td>
+      <td>Dance Room</td>
+      <td>dance pop</td>
+    </tr>
+    <tr>
+      <th>223</th>
+      <td>37i9dQZF1DWSJHnPb1f0X3</td>
+      <td>Cardio</td>
+      <td>dance pop</td>
+    </tr>
+    <tr>
+      <th>272</th>
+      <td>37i9dQZF1DX6pH08wMhkaI</td>
+      <td>Dance Pop Hits</td>
+      <td>dance pop</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The <strong>genre</strong> table maps each subgenre to a genre.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">genre</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>playlist_subgenre</th>
+      <th>playlist_genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>dance pop</td>
+      <td>pop</td>
+    </tr>
+    <tr>
+      <th>1298</th>
+      <td>post-teen pop</td>
+      <td>pop</td>
+    </tr>
+    <tr>
+      <th>2427</th>
+      <td>electropop</td>
+      <td>pop</td>
+    </tr>
+    <tr>
+      <th>3835</th>
+      <td>indie poptimism</td>
+      <td>pop</td>
+    </tr>
+    <tr>
+      <th>5507</th>
+      <td>hip hop</td>
+      <td>rap</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>After seperating the columns, the original dataframe is normalizd into 3NF. The next thing is to
+save them into SQL. There are many ways to do so. I used the package <strong>sqlite3</strong> for this project.</p>
+<pre class="code ipython3 literal-block">
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">'spotify.db'</span><span class="p">)</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">track</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'track'</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">album</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'album'</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">playlist</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'playlist'</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">genre</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'genre'</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="sample-query">
+<h2>Sample query</h2>
+<p>Suppose we want to find all the playlists that contains instruments.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">query</span> <span class="o">=</span> <span class="s1">'''SELECT distinct playlist.playlist_name
+           FROM playlist
+           INNER JOIN track
+           ON track.playlist_id = playlist.playlist_id
+           WHERE track.instrumentalness &gt; 0
+           ORDER BY track.instrumentalness DESC
+           LIMIT 10
+'''</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>playlist_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>90s Dance Hits</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RUSSIAN Gangster Rap</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sunny Beats</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Indie/Jazz Poptimism</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Tropical Nights</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>INDIE POP! TUNES</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>URBAN NATION</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>ALPAS Music Festival</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Tropical Vibes</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Alex Workout</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Yijie He ",
+  "url" : "..",
+  "image": "",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

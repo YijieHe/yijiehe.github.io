@@ -1,5 +1,711 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/all.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-09-19T00:00:00+00:00</updated><entry><title>Visualize malaria datasets</title><link href="https://yijiehe.github.io/articles/visualize-malaria-datasets.html" rel="alternate"></link><published>2020-09-19T00:00:00+00:00</published><updated>2020-09-19T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-19:/articles/visualize-malaria-datasets.html</id><summary type="html">&lt;p class="first last"&gt;Visualization of malaria data&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/all.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-10-06T00:00:00+00:00</updated><entry><title>Construct a SQL Database of Spotify Songs in 3rd Normal Form (3NF)</title><link href="https://yijiehe.github.io/articles/construct-a-sql-database-of-spotify-songs-in-3rd-normal-form-3nf.html" rel="alternate"></link><published>2020-10-06T00:00:00+00:00</published><updated>2020-10-06T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-10-06:/articles/construct-a-sql-database-of-spotify-songs-in-3rd-normal-form-3nf.html</id><summary type="html">&lt;p class="first last"&gt;Convert pandas dataframe to sql database&lt;/p&gt;
+</summary><content type="html">&lt;div class="section" id="data-nomalization"&gt;
+&lt;h2&gt;Data Nomalization&lt;/h2&gt;
+&lt;p&gt;Database Normalization is a technique of organizing the data in the database. Normalization is a systematic
+approach of decomposing tables to eliminate data redundancy(repetition) and undesirable characteristics
+like Insertion, Update and Deletion Anomalies. It is a multi-step process that puts data into tabular form,
+removing duplicated data from the relation tables.&lt;/p&gt;
+&lt;p&gt;Normalization is used for mainly two purposes,&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Eliminating redundant(useless) data.&lt;/li&gt;
+&lt;li&gt;Ensuring data dependencies make sense i.e data is logically stored.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="first-normal-form-1nf"&gt;
+&lt;h3&gt;First normal form (1NF)&lt;/h3&gt;
+&lt;p&gt;For a table to be in the First Normal Form, it should follow the following 4 rules:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;It should only have single(atomic) valued attributes/columns.&lt;/li&gt;
+&lt;li&gt;Values stored in a column should be of the same domain&lt;/li&gt;
+&lt;li&gt;All the columns in a table should have unique names.&lt;/li&gt;
+&lt;li&gt;And the order in which data is stored, does not matter.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="second-normal-form-2nf"&gt;
+&lt;h3&gt;Second normal form (2NF)&lt;/h3&gt;
+&lt;p&gt;For a table to be in the Second Normal Form,&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;It should be in the First Normal form.&lt;/li&gt;
+&lt;li&gt;And, it should not have Partial Dependency.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="third-normal-form-3nf"&gt;
+&lt;h3&gt;Third normal form (3NF)&lt;/h3&gt;
+&lt;p&gt;A table is said to be in the Third Normal Form when,&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;It is in the Second Normal form.&lt;/li&gt;
+&lt;li&gt;And, it doesn't have Transitive Dependency.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-spotify-songs-dataset"&gt;
+&lt;h2&gt;The Spotify Songs Dataset&lt;/h2&gt;
+&lt;p&gt;The original data can be found &lt;a class="reference external" href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Let's see how it looks like:&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;track_id&lt;/th&gt;
+      &lt;th&gt;track_name&lt;/th&gt;
+      &lt;th&gt;track_artist&lt;/th&gt;
+      &lt;th&gt;track_popularity&lt;/th&gt;
+      &lt;th&gt;track_album_id&lt;/th&gt;
+      &lt;th&gt;track_album_name&lt;/th&gt;
+      &lt;th&gt;track_album_release_date&lt;/th&gt;
+      &lt;th&gt;playlist_name&lt;/th&gt;
+      &lt;th&gt;playlist_id&lt;/th&gt;
+      &lt;th&gt;playlist_genre&lt;/th&gt;
+      &lt;th&gt;...&lt;/th&gt;
+      &lt;th&gt;key&lt;/th&gt;
+      &lt;th&gt;loudness&lt;/th&gt;
+      &lt;th&gt;mode&lt;/th&gt;
+      &lt;th&gt;speechiness&lt;/th&gt;
+      &lt;th&gt;acousticness&lt;/th&gt;
+      &lt;th&gt;instrumentalness&lt;/th&gt;
+      &lt;th&gt;liveness&lt;/th&gt;
+      &lt;th&gt;valence&lt;/th&gt;
+      &lt;th&gt;tempo&lt;/th&gt;
+      &lt;th&gt;duration_ms&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;6f807x0ima9a1j3VPbc7VN&lt;/td&gt;
+      &lt;td&gt;I Don't Care (with Justin Bieber) - Loud Luxur...&lt;/td&gt;
+      &lt;td&gt;Ed Sheeran&lt;/td&gt;
+      &lt;td&gt;66&lt;/td&gt;
+      &lt;td&gt;2oCs0DGTsRO98Gh5ZSl2Cx&lt;/td&gt;
+      &lt;td&gt;I Don't Care (with Justin Bieber) [Loud Luxury...&lt;/td&gt;
+      &lt;td&gt;2019-06-14&lt;/td&gt;
+      &lt;td&gt;Pop Remix&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;pop&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;-2.634&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0.0583&lt;/td&gt;
+      &lt;td&gt;0.1020&lt;/td&gt;
+      &lt;td&gt;0.000000&lt;/td&gt;
+      &lt;td&gt;0.0653&lt;/td&gt;
+      &lt;td&gt;0.518&lt;/td&gt;
+      &lt;td&gt;122.036&lt;/td&gt;
+      &lt;td&gt;194754&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;0r7CVbZTWZgbTCYdfa2P31&lt;/td&gt;
+      &lt;td&gt;Memories - Dillon Francis Remix&lt;/td&gt;
+      &lt;td&gt;Maroon 5&lt;/td&gt;
+      &lt;td&gt;67&lt;/td&gt;
+      &lt;td&gt;63rPSO264uRjW1X5E6cWv6&lt;/td&gt;
+      &lt;td&gt;Memories (Dillon Francis Remix)&lt;/td&gt;
+      &lt;td&gt;2019-12-13&lt;/td&gt;
+      &lt;td&gt;Pop Remix&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;pop&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;11&lt;/td&gt;
+      &lt;td&gt;-4.969&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0.0373&lt;/td&gt;
+      &lt;td&gt;0.0724&lt;/td&gt;
+      &lt;td&gt;0.004210&lt;/td&gt;
+      &lt;td&gt;0.3570&lt;/td&gt;
+      &lt;td&gt;0.693&lt;/td&gt;
+      &lt;td&gt;99.972&lt;/td&gt;
+      &lt;td&gt;162600&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;1z1Hg7Vb0AhHDiEmnDE79l&lt;/td&gt;
+      &lt;td&gt;All the Time - Don Diablo Remix&lt;/td&gt;
+      &lt;td&gt;Zara Larsson&lt;/td&gt;
+      &lt;td&gt;70&lt;/td&gt;
+      &lt;td&gt;1HoSmj2eLcsrR0vE9gThr4&lt;/td&gt;
+      &lt;td&gt;All the Time (Don Diablo Remix)&lt;/td&gt;
+      &lt;td&gt;2019-07-05&lt;/td&gt;
+      &lt;td&gt;Pop Remix&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;pop&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;-3.432&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0.0742&lt;/td&gt;
+      &lt;td&gt;0.0794&lt;/td&gt;
+      &lt;td&gt;0.000023&lt;/td&gt;
+      &lt;td&gt;0.1100&lt;/td&gt;
+      &lt;td&gt;0.613&lt;/td&gt;
+      &lt;td&gt;124.008&lt;/td&gt;
+      &lt;td&gt;176616&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;75FpbthrwQmzHlBJLuGdC7&lt;/td&gt;
+      &lt;td&gt;Call You Mine - Keanu Silva Remix&lt;/td&gt;
+      &lt;td&gt;The Chainsmokers&lt;/td&gt;
+      &lt;td&gt;60&lt;/td&gt;
+      &lt;td&gt;1nqYsOef1yKKuGOVchbsk6&lt;/td&gt;
+      &lt;td&gt;Call You Mine - The Remixes&lt;/td&gt;
+      &lt;td&gt;2019-07-19&lt;/td&gt;
+      &lt;td&gt;Pop Remix&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;pop&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;-3.778&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0.1020&lt;/td&gt;
+      &lt;td&gt;0.0287&lt;/td&gt;
+      &lt;td&gt;0.000009&lt;/td&gt;
+      &lt;td&gt;0.2040&lt;/td&gt;
+      &lt;td&gt;0.277&lt;/td&gt;
+      &lt;td&gt;121.956&lt;/td&gt;
+      &lt;td&gt;169093&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;1e8PAfcKUYoKkxPhrHqw4x&lt;/td&gt;
+      &lt;td&gt;Someone You Loved - Future Humans Remix&lt;/td&gt;
+      &lt;td&gt;Lewis Capaldi&lt;/td&gt;
+      &lt;td&gt;69&lt;/td&gt;
+      &lt;td&gt;7m7vv9wlQ4i0LFuJiE2zsQ&lt;/td&gt;
+      &lt;td&gt;Someone You Loved (Future Humans Remix)&lt;/td&gt;
+      &lt;td&gt;2019-03-05&lt;/td&gt;
+      &lt;td&gt;Pop Remix&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;pop&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;-4.672&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0.0359&lt;/td&gt;
+      &lt;td&gt;0.0803&lt;/td&gt;
+      &lt;td&gt;0.000000&lt;/td&gt;
+      &lt;td&gt;0.0833&lt;/td&gt;
+      &lt;td&gt;0.725&lt;/td&gt;
+      &lt;td&gt;123.976&lt;/td&gt;
+      &lt;td&gt;189052&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;5 rows × 23 columns&lt;/p&gt;
+&lt;/div&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The columns of the data are:&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+Index(['track_id', 'track_name', 'track_artist', 'track_popularity',
+       'track_album_id', 'track_album_name', 'track_album_release_date',
+       'playlist_name', 'playlist_id', 'playlist_genre', 'playlist_subgenre',
+       'danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',
+       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',
+       'duration_ms'],
+      dtype='object')
+&lt;/pre&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;Data Nomalization&lt;/h2&gt;
+&lt;p&gt;Since the original data columns are single valued, and the all columns contain information in the same
+domain, it is in 1NF. However, it is obvious that the Spotify dataframe has information about these fields:
+&lt;strong&gt;track&lt;/strong&gt;, &lt;strong&gt;album&lt;/strong&gt; and &lt;strong&gt;playlists&lt;/strong&gt;. In addition, notice that &lt;strong&gt;subgenre&lt;/strong&gt; also depends on the &lt;strong&gt;genre&lt;/strong&gt; column.
+So we need to seperate these information into different tables.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;track&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iloc&lt;/span&gt;&lt;span class="p"&gt;[:,[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;album&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,[&lt;/span&gt;&lt;span class="s1"&gt;'track_album_id'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'track_album_name'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'track_album_release_date'&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+         &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop_duplicates&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;subset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'track_album_id'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;playlist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,[&lt;/span&gt;&lt;span class="s1"&gt;'playlist_id'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'playlist_name'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'playlist_subgenre'&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+            &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop_duplicates&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;subset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'playlist_id'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+           &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;genre&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[:,[&lt;/span&gt;&lt;span class="s1"&gt;'playlist_subgenre'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'playlist_genre'&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+         &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop_duplicates&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;subset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'playlist_subgenre'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;album&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now we have 4 dataframes. Let's look at them.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;track&lt;/strong&gt; table has all the information about a single song besides album and playlist.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;track&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;track_id&lt;/th&gt;
+      &lt;th&gt;track_name&lt;/th&gt;
+      &lt;th&gt;track_artist&lt;/th&gt;
+      &lt;th&gt;track_popularity&lt;/th&gt;
+      &lt;th&gt;track_album_id&lt;/th&gt;
+      &lt;th&gt;playlist_id&lt;/th&gt;
+      &lt;th&gt;danceability&lt;/th&gt;
+      &lt;th&gt;energy&lt;/th&gt;
+      &lt;th&gt;key&lt;/th&gt;
+      &lt;th&gt;loudness&lt;/th&gt;
+      &lt;th&gt;mode&lt;/th&gt;
+      &lt;th&gt;speechiness&lt;/th&gt;
+      &lt;th&gt;acousticness&lt;/th&gt;
+      &lt;th&gt;instrumentalness&lt;/th&gt;
+      &lt;th&gt;liveness&lt;/th&gt;
+      &lt;th&gt;valence&lt;/th&gt;
+      &lt;th&gt;tempo&lt;/th&gt;
+      &lt;th&gt;duration_ms&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;6f807x0ima9a1j3VPbc7VN&lt;/td&gt;
+      &lt;td&gt;I Don't Care (with Justin Bieber) - Loud Luxur...&lt;/td&gt;
+      &lt;td&gt;Ed Sheeran&lt;/td&gt;
+      &lt;td&gt;66&lt;/td&gt;
+      &lt;td&gt;2oCs0DGTsRO98Gh5ZSl2Cx&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;0.748&lt;/td&gt;
+      &lt;td&gt;0.916&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;-2.634&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0.0583&lt;/td&gt;
+      &lt;td&gt;0.1020&lt;/td&gt;
+      &lt;td&gt;0.000000&lt;/td&gt;
+      &lt;td&gt;0.0653&lt;/td&gt;
+      &lt;td&gt;0.518&lt;/td&gt;
+      &lt;td&gt;122.036&lt;/td&gt;
+      &lt;td&gt;194754&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;0r7CVbZTWZgbTCYdfa2P31&lt;/td&gt;
+      &lt;td&gt;Memories - Dillon Francis Remix&lt;/td&gt;
+      &lt;td&gt;Maroon 5&lt;/td&gt;
+      &lt;td&gt;67&lt;/td&gt;
+      &lt;td&gt;63rPSO264uRjW1X5E6cWv6&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;0.726&lt;/td&gt;
+      &lt;td&gt;0.815&lt;/td&gt;
+      &lt;td&gt;11&lt;/td&gt;
+      &lt;td&gt;-4.969&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0.0373&lt;/td&gt;
+      &lt;td&gt;0.0724&lt;/td&gt;
+      &lt;td&gt;0.004210&lt;/td&gt;
+      &lt;td&gt;0.3570&lt;/td&gt;
+      &lt;td&gt;0.693&lt;/td&gt;
+      &lt;td&gt;99.972&lt;/td&gt;
+      &lt;td&gt;162600&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;1z1Hg7Vb0AhHDiEmnDE79l&lt;/td&gt;
+      &lt;td&gt;All the Time - Don Diablo Remix&lt;/td&gt;
+      &lt;td&gt;Zara Larsson&lt;/td&gt;
+      &lt;td&gt;70&lt;/td&gt;
+      &lt;td&gt;1HoSmj2eLcsrR0vE9gThr4&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;0.675&lt;/td&gt;
+      &lt;td&gt;0.931&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;-3.432&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0.0742&lt;/td&gt;
+      &lt;td&gt;0.0794&lt;/td&gt;
+      &lt;td&gt;0.000023&lt;/td&gt;
+      &lt;td&gt;0.1100&lt;/td&gt;
+      &lt;td&gt;0.613&lt;/td&gt;
+      &lt;td&gt;124.008&lt;/td&gt;
+      &lt;td&gt;176616&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;75FpbthrwQmzHlBJLuGdC7&lt;/td&gt;
+      &lt;td&gt;Call You Mine - Keanu Silva Remix&lt;/td&gt;
+      &lt;td&gt;The Chainsmokers&lt;/td&gt;
+      &lt;td&gt;60&lt;/td&gt;
+      &lt;td&gt;1nqYsOef1yKKuGOVchbsk6&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;0.718&lt;/td&gt;
+      &lt;td&gt;0.930&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;-3.778&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0.1020&lt;/td&gt;
+      &lt;td&gt;0.0287&lt;/td&gt;
+      &lt;td&gt;0.000009&lt;/td&gt;
+      &lt;td&gt;0.2040&lt;/td&gt;
+      &lt;td&gt;0.277&lt;/td&gt;
+      &lt;td&gt;121.956&lt;/td&gt;
+      &lt;td&gt;169093&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;1e8PAfcKUYoKkxPhrHqw4x&lt;/td&gt;
+      &lt;td&gt;Someone You Loved - Future Humans Remix&lt;/td&gt;
+      &lt;td&gt;Lewis Capaldi&lt;/td&gt;
+      &lt;td&gt;69&lt;/td&gt;
+      &lt;td&gt;7m7vv9wlQ4i0LFuJiE2zsQ&lt;/td&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;0.650&lt;/td&gt;
+      &lt;td&gt;0.833&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;-4.672&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0.0359&lt;/td&gt;
+      &lt;td&gt;0.0803&lt;/td&gt;
+      &lt;td&gt;0.000000&lt;/td&gt;
+      &lt;td&gt;0.0833&lt;/td&gt;
+      &lt;td&gt;0.725&lt;/td&gt;
+      &lt;td&gt;123.976&lt;/td&gt;
+      &lt;td&gt;189052&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;strong&gt;album&lt;/strong&gt; table has each album's name and date.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;album&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;track_album_id&lt;/th&gt;
+      &lt;th&gt;track_album_name&lt;/th&gt;
+      &lt;th&gt;track_album_release_date&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;2oCs0DGTsRO98Gh5ZSl2Cx&lt;/td&gt;
+      &lt;td&gt;I Don't Care (with Justin Bieber) [Loud Luxury...&lt;/td&gt;
+      &lt;td&gt;2019-06-14&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;63rPSO264uRjW1X5E6cWv6&lt;/td&gt;
+      &lt;td&gt;Memories (Dillon Francis Remix)&lt;/td&gt;
+      &lt;td&gt;2019-12-13&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;1HoSmj2eLcsrR0vE9gThr4&lt;/td&gt;
+      &lt;td&gt;All the Time (Don Diablo Remix)&lt;/td&gt;
+      &lt;td&gt;2019-07-05&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;1nqYsOef1yKKuGOVchbsk6&lt;/td&gt;
+      &lt;td&gt;Call You Mine - The Remixes&lt;/td&gt;
+      &lt;td&gt;2019-07-19&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;7m7vv9wlQ4i0LFuJiE2zsQ&lt;/td&gt;
+      &lt;td&gt;Someone You Loved (Future Humans Remix)&lt;/td&gt;
+      &lt;td&gt;2019-03-05&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;strong&gt;playlist&lt;/strong&gt; table has each playlist's name and genre.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;playlist&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;playlist_id&lt;/th&gt;
+      &lt;th&gt;playlist_name&lt;/th&gt;
+      &lt;th&gt;playlist_subgenre&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;37i9dQZF1DXcZDD7cfEKhW&lt;/td&gt;
+      &lt;td&gt;Pop Remix&lt;/td&gt;
+      &lt;td&gt;dance pop&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;70&lt;/th&gt;
+      &lt;td&gt;37i9dQZF1DWZQaaqNMbbXa&lt;/td&gt;
+      &lt;td&gt;Dance Pop&lt;/td&gt;
+      &lt;td&gt;dance pop&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;167&lt;/th&gt;
+      &lt;td&gt;37i9dQZF1DX2ENAPP1Tyed&lt;/td&gt;
+      &lt;td&gt;Dance Room&lt;/td&gt;
+      &lt;td&gt;dance pop&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;223&lt;/th&gt;
+      &lt;td&gt;37i9dQZF1DWSJHnPb1f0X3&lt;/td&gt;
+      &lt;td&gt;Cardio&lt;/td&gt;
+      &lt;td&gt;dance pop&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;272&lt;/th&gt;
+      &lt;td&gt;37i9dQZF1DX6pH08wMhkaI&lt;/td&gt;
+      &lt;td&gt;Dance Pop Hits&lt;/td&gt;
+      &lt;td&gt;dance pop&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;strong&gt;genre&lt;/strong&gt; table maps each subgenre to a genre.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;genre&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;playlist_subgenre&lt;/th&gt;
+      &lt;th&gt;playlist_genre&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;dance pop&lt;/td&gt;
+      &lt;td&gt;pop&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1298&lt;/th&gt;
+      &lt;td&gt;post-teen pop&lt;/td&gt;
+      &lt;td&gt;pop&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2427&lt;/th&gt;
+      &lt;td&gt;electropop&lt;/td&gt;
+      &lt;td&gt;pop&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3835&lt;/th&gt;
+      &lt;td&gt;indie poptimism&lt;/td&gt;
+      &lt;td&gt;pop&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;5507&lt;/th&gt;
+      &lt;td&gt;hip hop&lt;/td&gt;
+      &lt;td&gt;rap&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;After seperating the columns, the original dataframe is normalizd into 3NF. The next thing is to
+save them into SQL. There are many ways to do so. I used the package &lt;strong&gt;sqlite3&lt;/strong&gt; for this project.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sqlite3&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;conn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'spotify.db'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;track&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_sql&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'track'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;if_exists&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'replace'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;album&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_sql&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'album'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;if_exists&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'replace'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;playlist&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_sql&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'playlist'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;if_exists&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'replace'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;genre&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_sql&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'genre'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;if_exists&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'replace'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sample-query"&gt;
+&lt;h2&gt;Sample query&lt;/h2&gt;
+&lt;p&gt;Suppose we want to find all the playlists that contains instruments.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'''SELECT distinct playlist.playlist_name
+           FROM playlist
+           INNER JOIN track
+           ON track.playlist_id = playlist.playlist_id
+           WHERE track.instrumentalness &amp;gt; 0
+           ORDER BY track.instrumentalness DESC
+           LIMIT 10
+'''&lt;/span&gt;
+
+&lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_sql&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;playlist_name&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;90s Dance Hits&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;RUSSIAN Gangster Rap&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;Sunny Beats&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;Indie/Jazz Poptimism&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;Tropical Nights&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;5&lt;/th&gt;
+      &lt;td&gt;INDIE POP! TUNES&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;6&lt;/th&gt;
+      &lt;td&gt;URBAN NATION&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;7&lt;/th&gt;
+      &lt;td&gt;ALPAS Music Festival&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;8&lt;/th&gt;
+      &lt;td&gt;Tropical Vibes&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;9&lt;/th&gt;
+      &lt;td&gt;Alex Workout&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;/div&gt;
+</content><category term="Projects"></category></entry><entry><title>Visualize malaria datasets</title><link href="https://yijiehe.github.io/articles/visualize-malaria-datasets.html" rel="alternate"></link><published>2020-09-19T00:00:00+00:00</published><updated>2020-09-19T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-09-19:/articles/visualize-malaria-datasets.html</id><summary type="html">&lt;p class="first last"&gt;Visualization of malaria data&lt;/p&gt;
 </summary><content type="html">&lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
