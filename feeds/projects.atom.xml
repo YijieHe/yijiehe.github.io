@@ -1,5 +1,345 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He - Projects</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/projects.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-10-06T00:00:00+00:00</updated><entry><title>Construct a SQL Database of Spotify Songs in 3rd Normal Form (3NF)</title><link href="https://yijiehe.github.io/articles/construct-a-sql-database-of-spotify-songs-in-3rd-normal-form-3nf.html" rel="alternate"></link><published>2020-10-06T00:00:00+00:00</published><updated>2020-10-06T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-10-06:/articles/construct-a-sql-database-of-spotify-songs-in-3rd-normal-form-3nf.html</id><summary type="html">&lt;p class="first last"&gt;Convert pandas dataframe to sql database&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He - Projects</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/projects.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-10-19T00:00:00+00:00</updated><entry><title>Retrieve Data from Starwars API</title><link href="https://yijiehe.github.io/articles/retrieve-data-from-starwars-api.html" rel="alternate"></link><published>2020-10-19T00:00:00+00:00</published><updated>2020-10-19T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-10-19:/articles/retrieve-data-from-starwars-api.html</id><summary type="html">&lt;p class="first last"&gt;Find Oldest Character in Starwars Series&lt;/p&gt;
+</summary><content type="html">&lt;div class="section" id="starwars-api"&gt;
+&lt;h2&gt;Starwars API&lt;/h2&gt;
+&lt;p&gt;The &lt;a class="reference external" href="(https://swapi.dev/documentation"&gt;Starwars API(swapi)&lt;/a&gt; allows you to retrieve information about the
+Starwars series through HTTP request. It has a quite comprehensive documentation about the Starwar universe.
+In Python, HTTP requests can be achieved by the &lt;strong&gt;requests&lt;/strong&gt; package. For this project, we will use this package
+to acquire data from swapi and find the oldest character that is available in the given dataset.&lt;/p&gt;
+&lt;div class="section" id="import-and-format-data"&gt;
+&lt;h3&gt;Import and Format data&lt;/h3&gt;
+&lt;p&gt;The requested data is in JSON format. We need to transform it into pandas dataframe so that
+we can more easily handle it.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://swapi.dev/api/people/&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;82&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;starwar&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json_normalize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;name&lt;/th&gt;
+      &lt;th&gt;height&lt;/th&gt;
+      &lt;th&gt;mass&lt;/th&gt;
+      &lt;th&gt;hair_color&lt;/th&gt;
+      &lt;th&gt;skin_color&lt;/th&gt;
+      &lt;th&gt;eye_color&lt;/th&gt;
+      &lt;th&gt;birth_year&lt;/th&gt;
+      &lt;th&gt;gender&lt;/th&gt;
+      &lt;th&gt;homeworld&lt;/th&gt;
+      &lt;th&gt;films&lt;/th&gt;
+      &lt;th&gt;species&lt;/th&gt;
+      &lt;th&gt;vehicles&lt;/th&gt;
+      &lt;th&gt;starships&lt;/th&gt;
+      &lt;th&gt;created&lt;/th&gt;
+      &lt;th&gt;edited&lt;/th&gt;
+      &lt;th&gt;url&lt;/th&gt;
+      &lt;th&gt;detail&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;Luke Skywalker&lt;/td&gt;
+      &lt;td&gt;172&lt;/td&gt;
+      &lt;td&gt;77&lt;/td&gt;
+      &lt;td&gt;blond&lt;/td&gt;
+      &lt;td&gt;fair&lt;/td&gt;
+      &lt;td&gt;blue&lt;/td&gt;
+      &lt;td&gt;19BBY&lt;/td&gt;
+      &lt;td&gt;male&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/planets/1/&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/films/1/, http://swapi.d...&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/vehicles/14/, http://swa...&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/starships/12/, http://sw...&lt;/td&gt;
+      &lt;td&gt;2014-12-09T13:50:51.644000Z&lt;/td&gt;
+      &lt;td&gt;2014-12-20T21:17:56.891000Z&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/people/1/&lt;/td&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;C-3PO&lt;/td&gt;
+      &lt;td&gt;167&lt;/td&gt;
+      &lt;td&gt;75&lt;/td&gt;
+      &lt;td&gt;n/a&lt;/td&gt;
+      &lt;td&gt;gold&lt;/td&gt;
+      &lt;td&gt;yellow&lt;/td&gt;
+      &lt;td&gt;112BBY&lt;/td&gt;
+      &lt;td&gt;n/a&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/planets/1/&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/films/1/, http://swapi.d...&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/species/2/]&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;2014-12-10T15:10:51.357000Z&lt;/td&gt;
+      &lt;td&gt;2014-12-20T21:17:50.309000Z&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/people/2/&lt;/td&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;R2-D2&lt;/td&gt;
+      &lt;td&gt;96&lt;/td&gt;
+      &lt;td&gt;32&lt;/td&gt;
+      &lt;td&gt;n/a&lt;/td&gt;
+      &lt;td&gt;white, blue&lt;/td&gt;
+      &lt;td&gt;red&lt;/td&gt;
+      &lt;td&gt;33BBY&lt;/td&gt;
+      &lt;td&gt;n/a&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/planets/8/&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/films/1/, http://swapi.d...&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/species/2/]&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;2014-12-10T15:11:50.376000Z&lt;/td&gt;
+      &lt;td&gt;2014-12-20T21:17:50.311000Z&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/people/3/&lt;/td&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;Darth Vader&lt;/td&gt;
+      &lt;td&gt;202&lt;/td&gt;
+      &lt;td&gt;136&lt;/td&gt;
+      &lt;td&gt;none&lt;/td&gt;
+      &lt;td&gt;white&lt;/td&gt;
+      &lt;td&gt;yellow&lt;/td&gt;
+      &lt;td&gt;41.9BBY&lt;/td&gt;
+      &lt;td&gt;male&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/planets/1/&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/films/1/, http://swapi.d...&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/starships/13/]&lt;/td&gt;
+      &lt;td&gt;2014-12-10T15:18:20.704000Z&lt;/td&gt;
+      &lt;td&gt;2014-12-20T21:17:50.313000Z&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/people/4/&lt;/td&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;Leia Organa&lt;/td&gt;
+      &lt;td&gt;150&lt;/td&gt;
+      &lt;td&gt;49&lt;/td&gt;
+      &lt;td&gt;brown&lt;/td&gt;
+      &lt;td&gt;light&lt;/td&gt;
+      &lt;td&gt;brown&lt;/td&gt;
+      &lt;td&gt;19BBY&lt;/td&gt;
+      &lt;td&gt;female&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/planets/2/&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/films/1/, http://swapi.d...&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/vehicles/30/]&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;2014-12-10T15:20:09.791000Z&lt;/td&gt;
+      &lt;td&gt;2014-12-20T21:17:50.315000Z&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/people/5/&lt;/td&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="section" id="find-the-oldest-character"&gt;
+&lt;h3&gt;Find the oldest character&lt;/h3&gt;
+&lt;p&gt;Note that the chronicles in Starwars universe is different from ours. In Starwar, people's
+birth years are given either BBY(Before the Battle of Yevin) or ABY(After the Battle of Yevin).
+Since we do not have information about the death year of the character, we will assume that character with
+earliest birth year is the oldest, although it is not precise because robots can probably live forever if
+they are not destroyed in a battle.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;i_BBY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;birth_year&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contains&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;'(BBY)'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;i_ABY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;birth_year&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contains&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;'(ABY)'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Notice that we do not have any character born ABY given our dataset.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;birth_year&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i_ABY&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+Series([], Name: birth_year, dtype: object)
+&lt;/pre&gt;
+&lt;p&gt;Then we find all characters born BBY and find the oldest one.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;birth_year&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i_BBY&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+0       19BBY
+1      112BBY
+2       33BBY
+3     41.9BBY
+4       19BBY
+5       52BBY
+6       47BBY
+8       24BBY
+9       57BBY
+10    41.9BBY
+11      64BBY
+12     200BBY
+13      29BBY
+14      44BBY
+15     600BBY
+17      21BBY
+19     896BBY
+20      82BBY
+21    31.5BBY
+22      15BBY
+23      53BBY
+24      31BBY
+25      37BBY
+26      41BBY
+27      48BBY
+29       8BBY
+31      92BBY
+33      91BBY
+34      46BBY
+35      52BBY
+41      62BBY
+42      72BBY
+43      54BBY
+45      48BBY
+50      72BBY
+51      92BBY
+57      22BBY
+61      82BBY
+63      58BBY
+64      40BBY
+66     102BBY
+67      67BBY
+68      66BBY
+Name: birth_year, dtype: object
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;birth_year&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i_BBY&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+     &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extract&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;'(\d+)'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+     &lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'int'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+     &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+0    896
+dtype: int64
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;birth_year&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contains&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;896&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;name&lt;/th&gt;
+      &lt;th&gt;height&lt;/th&gt;
+      &lt;th&gt;mass&lt;/th&gt;
+      &lt;th&gt;hair_color&lt;/th&gt;
+      &lt;th&gt;skin_color&lt;/th&gt;
+      &lt;th&gt;eye_color&lt;/th&gt;
+      &lt;th&gt;birth_year&lt;/th&gt;
+      &lt;th&gt;gender&lt;/th&gt;
+      &lt;th&gt;homeworld&lt;/th&gt;
+      &lt;th&gt;films&lt;/th&gt;
+      &lt;th&gt;species&lt;/th&gt;
+      &lt;th&gt;vehicles&lt;/th&gt;
+      &lt;th&gt;starships&lt;/th&gt;
+      &lt;th&gt;created&lt;/th&gt;
+      &lt;th&gt;edited&lt;/th&gt;
+      &lt;th&gt;url&lt;/th&gt;
+      &lt;th&gt;detail&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;19&lt;/th&gt;
+      &lt;td&gt;Yoda&lt;/td&gt;
+      &lt;td&gt;66&lt;/td&gt;
+      &lt;td&gt;17&lt;/td&gt;
+      &lt;td&gt;white&lt;/td&gt;
+      &lt;td&gt;green&lt;/td&gt;
+      &lt;td&gt;brown&lt;/td&gt;
+      &lt;td&gt;896BBY&lt;/td&gt;
+      &lt;td&gt;male&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/planets/28/&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/films/2/, http://swapi.d...&lt;/td&gt;
+      &lt;td&gt;[http://swapi.dev/api/species/6/]&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;[]&lt;/td&gt;
+      &lt;td&gt;2014-12-15T12:26:01.042000Z&lt;/td&gt;
+      &lt;td&gt;2014-12-20T21:17:50.345000Z&lt;/td&gt;
+      &lt;td&gt;http://swapi.dev/api/people/20/&lt;/td&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="section" id="which-films-did-master-yoda-appear"&gt;
+&lt;h3&gt;Which films did Master Yoda appear?&lt;/h3&gt;
+&lt;p&gt;Now we have found Yoda to be the oldest character. We are interested in the films that he was active.
+We can find it through the &lt;em&gt;film&lt;/em&gt; endpoint in swapi.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;film_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;films&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;starwar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Yoda&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;film&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;film_list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;film&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;film_title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;film&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;'title'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;film&lt;/span&gt;&lt;span class="p"&gt;))]&lt;/span&gt;
+&lt;span class="n"&gt;film_title&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+['The Empire Strikes Back',
+ 'Return of the Jedi',
+ 'The Phantom Menace',
+ 'Attack of the Clones',
+ 'Revenge of the Sith']
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Projects"></category></entry><entry><title>Construct a SQL Database of Spotify Songs in 3rd Normal Form (3NF)</title><link href="https://yijiehe.github.io/articles/construct-a-sql-database-of-spotify-songs-in-3rd-normal-form-3nf.html" rel="alternate"></link><published>2020-10-06T00:00:00+00:00</published><updated>2020-10-06T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-10-06:/articles/construct-a-sql-database-of-spotify-songs-in-3rd-normal-form-3nf.html</id><summary type="html">&lt;p class="first last"&gt;Convert pandas dataframe to sql database&lt;/p&gt;
 </summary><content type="html">&lt;div class="section" id="data-nomalization"&gt;
 &lt;h2&gt;Data Nomalization&lt;/h2&gt;
 &lt;p&gt;Database Normalization is a technique of organizing the data in the database. Normalization is a systematic
