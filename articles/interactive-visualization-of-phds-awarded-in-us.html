@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="../theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="https://yijiehe.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Yijie He Atom">
+
+
+
+
+
+<meta name="author" content="Yijie" />
+<meta name="description" content="Create dashboard of PhDs awarded in US data" />
+<meta name="keywords" content="">
+
+<meta property="og:site_name" content="Yijie He"/>
+<meta property="og:title" content="Interactive visualization of PhDs awarded in US"/>
+<meta property="og:description" content="Create dashboard of PhDs awarded in US data"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="../articles/interactive-visualization-of-phds-awarded-in-us.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-11-03 00:00:00+00:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="../author/yijie.html">
+<meta property="article:section" content="Projects"/>
+<meta property="og:image" content="">
+
+  <title>Yijie He &ndash; Interactive visualization of PhDs awarded in US</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="..">
+        <img src="../theme/img/profile.png" alt="" title="">
+      </a>
+      <h1><a href=".."></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="../pages/About.html#About">About</a></li>
+          <li><a href="../pages/Contact.html#Contact">Contact</a></li>
+          <li><a href="../pages/Project.html#Project">Project</a></li>
+
+          <li><a href="https://www.linkedin.com/in/yijie-he/" target="_blank">LinkedIn</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+      
+    <h1 id="interactive-visualization-of-phds-awarded-in-us">Interactive visualization of PhDs awarded in US</h1>
+    <p>
+          Posted on Tue 03 November 2020 in <a href="../category/projects.html">Projects</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <div class="section" id="about-the-dataset">
+<h2>About the <a class="reference external" href="https://ncses.nsf.gov/pubs/nsf19301/data">dataset</a></h2>
+<p>The Survey of Earned Doctorates, the data source for this report, is an annual census of individuals who receive
+research doctoral degrees from accredited U.S. academic institutions. The survey is sponsored by six federal agencies:
+National Science Foundation (NSF), National Institutes of Health, Department of Education, National Endowment for the
+Humanities, Department of Agriculture, and National Aeronautics and Space Administration. These data are reported in
+several publications from NSF’s National Center for Science and Engineering Statistics. The most comprehensive and
+widely cited publication is this report, Doctorate Recipients from U.S. Universities.</p>
+<p>This report calls attention to major trends in doctoral education, organized into themes highlighting important
+questions about doctorate recipients. Since the original dataset is really large and comprehensive, I will focus on
+only two perspectives here:</p>
+<ul class="simple">
+<li>Doctorates by citizenship and fields over years</li>
+<li>Foreign Doctorates by countries and fields over years</li>
+</ul>
+</div>
+<div class="section" id="selected-dataset">
+<h2>Selected dataset</h2>
+<p>Here I display the datasets that are related to the two perspectives above.
+The first is foreign doctorates by country and broad fields, and the second is all doctorates by
+citizenship and fields of study.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">country</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Broad Field</th>
+      <th>country</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>173</th>
+      <td>2011</td>
+      <td>Non-science and engineering</td>
+      <td>Japan</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>153</th>
+      <td>2011</td>
+      <td>Non-science and engineering</td>
+      <td>Thailand</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>2009</td>
+      <td>Science and engineering</td>
+      <td>Iran</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>181</th>
+      <td>2009</td>
+      <td>Science and engineering</td>
+      <td>Mexico</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>2009</td>
+      <td>Science and engineering</td>
+      <td>Canada</td>
+      <td>387</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<pre class="code ipython3 literal-block">
+<span class="n">citizenship</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Citizenship</th>
+      <th>Fields of study</th>
+      <th>Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>47</th>
+      <td>2012</td>
+      <td>U.S. citizen or permanent resident</td>
+      <td>Physical sciences and earth sciences</td>
+      <td>3148</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>1987</td>
+      <td>Unknown</td>
+      <td>Humanities and arts</td>
+      <td>267</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>1992</td>
+      <td>Temporary visa holder</td>
+      <td>Psychology and social sciences</td>
+      <td>1158</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>2002</td>
+      <td>U.S. citizen or permanent resident</td>
+      <td>Humanities and arts</td>
+      <td>4320</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>2012</td>
+      <td>Unknown</td>
+      <td>Mathematics and computer sciences</td>
+      <td>252</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="dashboard-visualization">
+<h2>Dashboard visualization</h2>
+<p>For creating a dashboard, I used <strong>dash</strong> and <strong>plotly</strong> package.</p>
+<pre class="code ipython3 literal-block">
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">jupyter_dash</span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="k">import</span> <span class="n">JupyterDash</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="k">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+</pre>
+<p>A dashboard for doctoral recipients by citizenship can be created by the fllowing:</p>
+<pre class="code ipython3 literal-block">
+<span class="n">external_stylesheets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'https://codepen.io/chriddyp/pen/bWLwgP.css'</span><span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="n">external_stylesheets</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">'graph-with-slider'</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">'year-slider'</span><span class="p">,</span>
+        <span class="nb">min</span><span class="o">=</span><span class="n">citizenship</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+        <span class="nb">max</span><span class="o">=</span><span class="n">citizenship</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">citizenship</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+        <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">):</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">citizenship</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()},</span>
+        <span class="n">step</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span>
+<span class="p">])</span>
+
+<span class="nd">&#64;app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">'graph-with-slider'</span><span class="p">,</span> <span class="s1">'figure'</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">'year-slider'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">)])</span>
+
+<span class="k">def</span> <span class="nf">update_figure</span><span class="p">(</span><span class="n">selected_year</span><span class="p">):</span>
+    <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">citizenship</span><span class="p">[</span><span class="n">citizenship</span><span class="o">.</span><span class="n">Year</span> <span class="o">==</span> <span class="n">selected_year</span><span class="p">]</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">filtered_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Fields of study&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Number&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Citizenship&quot;</span><span class="p">,</span>
+                 <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Doctorate recipients by citizenship from 1987-2017&quot;</span><span class="p">)</span>
+
+    <span class="c1">#fig.update_layout(transition_duration=500)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">barmode</span><span class="o">=</span><span class="s1">'group'</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">'inline'</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre>
+<p>A dashboard for doctoral recipients by country can be created by the following:</p>
+<pre class="code ipython3 literal-block">
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="n">external_stylesheets</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">'graph-with-slider'</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">'year-slider'</span><span class="p">,</span>
+        <span class="nb">min</span><span class="o">=</span><span class="n">country</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+        <span class="nb">max</span><span class="o">=</span><span class="n">country</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">country</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+        <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">):</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">country</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()},</span>
+        <span class="n">step</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span>
+<span class="p">])</span>
+
+<span class="nd">&#64;app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">'graph-with-slider'</span><span class="p">,</span> <span class="s1">'figure'</span><span class="p">),</span>
+    <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">'year-slider'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">)])</span>
+
+<span class="k">def</span> <span class="nf">update_figure</span><span class="p">(</span><span class="n">selected_year</span><span class="p">):</span>
+    <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">country</span><span class="p">[</span><span class="n">country</span><span class="o">.</span><span class="n">Year</span> <span class="o">==</span> <span class="n">selected_year</span><span class="p">]</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">filtered_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Broad Field&quot;</span><span class="p">,</span>
+                 <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Doctorate recipients by country from 2008-2017&quot;</span><span class="p">)</span>
+
+    <span class="c1">#fig.update_layout(transition_duration=500)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">barmode</span><span class="o">=</span><span class="s1">'group'</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">'inline'</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre>
+</div>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Yijie He ",
+  "url" : "..",
+  "image": "",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
