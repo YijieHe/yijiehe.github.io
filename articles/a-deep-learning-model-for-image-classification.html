@@ -82,16 +82,18 @@
 
 
   <div>
-    <ol class="arabic simple" start="7">
-<li>Train a deep learning model to classify beetles, cockroaches and
-dragonflies using these
-<a class="reference external" href="https://www.dropbox.com/s/fn73sj2e6c9rhf6/insects.zip?dl=0">images</a>.
-Note: Original images from <a class="reference external" href="https://www.insectimages.org/index.cfm">https://www.insectimages.org/index.cfm</a>.
-Blog about this, and <em>explain</em> how the neural network classified the
-images.</li>
-</ol>
+    <div class="section" id="intro">
+<h2>Intro</h2>
+<p>Convolutinal networks is a class of deep learning models that is widely used for image classification. Its architecture
+mimics the connectivity of neurons in human brain and visual cortex. In this blog, I will walk through
+an implementation of ConvNet in python using tensorflow. The <a class="reference external" href="https://www.dropbox.com/s/fn73sj2e6c9rhf6/insects.zip?dl=0">dataset</a>
+is originally from <a class="reference external" href="https://www.insectimages.org/index.cfm">Insect Images</a>. It contains images for three species of
+insects: beetles, cockroach and dragonflies.</p>
+</div>
+<div class="section" id="data-preprocessing">
+<h2>Data Preprocessing</h2>
 <div class="section" id="import-data">
-<h2>Import data</h2>
+<h3>Import data</h3>
 <pre class="code ipython3 literal-block">
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'test'</span><span class="p">,</span><span class="s1">'train'</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'beetles'</span><span class="p">,</span> <span class="s1">'cockroach'</span><span class="p">,</span> <span class="s1">'dragonflies'</span><span class="p">]:</span>
@@ -107,8 +109,8 @@ Images in train cockroach: 240
 Images in train dragonflies: 319
 </pre>
 </div>
-<div class="section" id="preprocessing-data">
-<h2>preprocessing data</h2>
+<div class="section" id="load-data">
+<h3>Load data</h3>
 <pre class="code ipython3 literal-block">
 <span class="c1">### specify image size</span>
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
@@ -139,7 +141,7 @@ Found 1019 files belonging to 3 classes.
 </pre>
 </div>
 <div class="section" id="visualize-data">
-<h2>visualize data</h2>
+<h3>Visualize data</h3>
 <pre class="code ipython3 literal-block">
 <span class="n">class_names</span> <span class="o">=</span> <span class="n">test_ds</span><span class="o">.</span><span class="n">class_names</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
@@ -153,7 +155,9 @@ Found 1019 files belonging to 3 classes.
 <img alt="Example plot for each insect specie" src="/images/output_13_0.png" />
 </div>
 <div class="section" id="configure-the-dataset-for-performance">
-<h2>Configure the dataset for performance</h2>
+<h3>Configure the dataset for performance</h3>
+<p>By merit of offical tensorflow documentation, we buffer the data so that we can yield data from
+disk without I/O become blocking.</p>
 <pre class="code ipython3 literal-block">
 <span class="n">AUTOTUNE</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">AUTOTUNE</span>
 
@@ -161,8 +165,25 @@ Found 1019 files belonging to 3 classes.
 <span class="n">test_ds</span> <span class="o">=</span> <span class="n">test_ds</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">AUTOTUNE</span><span class="p">)</span>
 </pre>
 </div>
-<div class="section" id="create-the-model">
-<h2>Create the model</h2>
+<div class="section" id="build-the-model">
+<h3>Build the model</h3>
+<p><strong>tf.keras.Sequential</strong> groups a linear stack of layers. The first layer is used to normalize our
+image data. Subsequent layers are comprised of <em>convolution layer</em>, <em>pooling layer</em>, <em>flatten layer</em> and
+<em>dense layer</em>. Here are brief explanations of each kinds of layer.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Convolution layer</dt>
+<dd><p class="first">The objective of the Convolution Operation is to extract the high-level features such as edges, from the input image.
+ConvNets need not be limited to only one Convolutional Layer. Conventionally, the first ConvLayer is responsible for
+capturing the Low-Level features such as edges, color, gradient orientation, etc. With added layers,
+the architecture adapts to the High-Level features as well, giving us a network which has the wholesome understanding
+of images in the dataset, similar to how we would. The mechanism of a convolution layer is shown in the image below,
+whose input is a 5*5*1 image and goes through a 3*3*1 filter, resulting in a 3*3*1 convolved feature.</p>
+<img alt="explanation of conv layer" class="last" src="/images/comv.gif" />
+</dd>
+</dl>
+</li>
+</ul>
 <pre class="code ipython3 literal-block">
 <span class="n">num_classes</span> <span class="o">=</span> <span class="mi">3</span>
 
@@ -181,7 +202,7 @@ Found 1019 files belonging to 3 classes.
 </pre>
 </div>
 <div class="section" id="compile-the-model">
-<h2>Compile the model</h2>
+<h3>Compile the model</h3>
 <pre class="code ipython3 literal-block">
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span>
               <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">SparseCategoricalCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
@@ -222,7 +243,7 @@ _________________________________________________________________
 </pre>
 </div>
 <div class="section" id="train-the-model">
-<h2>Train the model</h2>
+<h3>Train the model</h3>
 <pre class="code ipython3 literal-block">
 <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span>
 <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
@@ -255,7 +276,7 @@ Epoch 10/10
 </pre>
 </div>
 <div class="section" id="visualize-training-result">
-<h2>Visualize training result</h2>
+<h3>Visualize training result</h3>
 <pre class="code ipython3 literal-block">
 <span class="n">acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">]</span>
 <span class="n">val_acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">'val_accuracy'</span><span class="p">]</span>
@@ -282,8 +303,10 @@ Epoch 10/10
 <img alt="Model performance" src="/images/output_24_0.png" />
 </div>
 <div class="section" id="references">
-<h2>References</h2>
+<h3>References</h3>
 <p><a class="reference external" href="https://www.tensorflow.org/tutorials/images/classification">https://www.tensorflow.org/tutorials/images/classification</a></p>
+<p><a class="reference external" href="https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53">https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53</a></p>
+</div>
 </div>
 
   </div>
