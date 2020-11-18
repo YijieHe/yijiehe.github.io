@@ -167,23 +167,6 @@ disk without I/O become blocking.</p>
 </div>
 <div class="section" id="build-the-model">
 <h3>Build the model</h3>
-<p><strong>tf.keras.Sequential</strong> groups a linear stack of layers. The first layer is used to normalize our
-image data. Subsequent layers are comprised of <em>convolution layer</em>, <em>pooling layer</em>, <em>flatten layer</em> and
-<em>dense layer</em>. Here are brief explanations of each kinds of layer.</p>
-<ul>
-<li><dl class="first docutils">
-<dt>Convolution layer</dt>
-<dd><p class="first">The objective of the Convolution Operation is to extract the high-level features such as edges, from the input image.
-ConvNets need not be limited to only one Convolutional Layer. Conventionally, the first ConvLayer is responsible for
-capturing the Low-Level features such as edges, color, gradient orientation, etc. With added layers,
-the architecture adapts to the High-Level features as well, giving us a network which has the wholesome understanding
-of images in the dataset, similar to how we would. The mechanism of a convolution layer is shown in the image below,
-whose input is a 5*5*1 image and goes through a 3*3*1 filter, resulting in a 3*3*1 convolved feature.</p>
-<img alt="explanation of conv layer" class="last" src="/images/comv.gif" />
-</dd>
-</dl>
-</li>
-</ul>
 <pre class="code ipython3 literal-block">
 <span class="n">num_classes</span> <span class="o">=</span> <span class="mi">3</span>
 
@@ -200,9 +183,6 @@ whose input is a 5*5*1 image and goes through a 3*3*1 filter, resulting in a 3*3
   <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">)</span>
 <span class="p">])</span>
 </pre>
-</div>
-<div class="section" id="compile-the-model">
-<h3>Compile the model</h3>
 <pre class="code ipython3 literal-block">
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span>
               <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">SparseCategoricalCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
@@ -241,6 +221,56 @@ Trainable params: 3,989,027
 Non-trainable params: 0
 _________________________________________________________________
 </pre>
+<p><strong>tf.keras.Sequential</strong> groups a linear stack of layers. The first layer is used to normalize our
+image data. Subsequent layers are comprised of <em>convolution layer</em>, <em>pooling layer</em>, <em>flatten layer</em> and
+<em>dense layer</em>. Here are brief explanations of each kinds of layer.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Convolution layer</dt>
+<dd><blockquote class="first">
+<p>The objective of the Convolution Operation is to extract the high-level features such as edges, from the input image.
+ConvNets need not be limited to only one Convolutional Layer. Conventionally, the first ConvLayer is responsible for
+capturing the Low-Level features such as edges, color, gradient orientation, etc. With added layers,
+the architecture adapts to the High-Level features as well, giving us a network which has the wholesome understanding
+of images in the dataset, similar to how we would. In the simple illustration shown below, the filter goes over the
+input matrix and map the calculated feature into output.</p>
+<img alt="explanation of conv layer" src="/images/comv.png" />
+</blockquote>
+<p>In our model, the first convolution layer is applying 16 3*3*3
+filters to the input 256*256*3 tensor. The stride for the filters is set to 1, meaning that each filter will move
+1 pixel at a time. The graph below shows how the output will be calculated.</p>
+<img alt="explanation of first conv layer." class="last" src="/images/conv2.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Pooling layer</dt>
+<dd><p class="first">Pooling layers section would reduce the number of parameters when the images are too large.
+Spatial pooling also called subsampling or downsampling which reduces the dimensionality of each map but retains
+important information. Spatial pooling can be of different types:</p>
+<blockquote>
+<ul class="simple">
+<li>Max Pooling</li>
+<li>Average Pooling</li>
+<li>Sum Pooling</li>
+</ul>
+</blockquote>
+<p>Our model uses max pooling. It takes the largest element from the rectified feature map. Taking the largest element could
+also take the average pooling. Sum of all elements in the feature map call as sum pooling.</p>
+<img alt="explanation of pooling." class="last" src="/images/pooling.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Fully connected layer</dt>
+<dd><p class="first">Fully connected layer functions like a neural network. It first fattens the tensor from previous layer into 1-D and
+the data will go through dense layers that combines all of the features to classify the outputs. The full diagram of the
+model can be interpreted as:</p>
+<img alt="explanation of pooling." class="last" src="/images/fc.jpeg" />
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 <div class="section" id="train-the-model">
 <h3>Train the model</h3>
@@ -275,8 +305,10 @@ Epoch 10/10
 32/32 [==============================] - 8s 253ms/step - loss: 0.0292 - accuracy: 0.9921 - val_loss: 0.0360 - val_accuracy: 0.9889
 </pre>
 </div>
-<div class="section" id="visualize-training-result">
-<h3>Visualize training result</h3>
+<div class="section" id="visualize-result">
+<h3>Visualize result</h3>
+<p>Accuracy and loss of the model during each epoch is plotted below. Since the training and validation accuracy are close,
+there is no potential overfitting of our model. The final accuracy is nearly 100%, so it performs rather well on our dataset.</p>
 <pre class="code ipython3 literal-block">
 <span class="n">acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">]</span>
 <span class="n">val_acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">'val_accuracy'</span><span class="p">]</span>
@@ -306,6 +338,7 @@ Epoch 10/10
 <h3>References</h3>
 <p><a class="reference external" href="https://www.tensorflow.org/tutorials/images/classification">https://www.tensorflow.org/tutorials/images/classification</a></p>
 <p><a class="reference external" href="https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53">https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53</a></p>
+<p><a class="reference external" href="https://medium.com/&#64;RaghavPrabhu/understanding-of-convolutional-neural-network-cnn-deep-learning-99760835f148">https://medium.com/&#64;RaghavPrabhu/understanding-of-convolutional-neural-network-cnn-deep-learning-99760835f148</a></p>
 </div>
 </div>
 
