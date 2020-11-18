@@ -23,12 +23,12 @@
 
 
 <meta name="author" content="Yijie" />
-<meta name="description" content="Train RNN to classify beetles, cockroach and dragonflies" />
+<meta name="description" content="Train a convolutional neural network to classify beetles, cockroach and dragonflies using tensorflow" />
 <meta name="keywords" content="">
 
 <meta property="og:site_name" content="Yijie He"/>
 <meta property="og:title" content="A Deep Learning Model for Image Classification"/>
-<meta property="og:description" content="Train RNN to classify beetles, cockroach and dragonflies"/>
+<meta property="og:description" content="Train a convolutional neural network to classify beetles, cockroach and dragonflies using tensorflow"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="../articles/a-deep-learning-model-for-image-classification.html"/>
 <meta property="og:type" content="article"/>
@@ -90,34 +90,8 @@ Note: Original images from <a class="reference external" href="https://www.insec
 Blog about this, and <em>explain</em> how the neural network classified the
 images.</li>
 </ol>
-<pre class="code ipython3 literal-block">
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">PIL</span>
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-
-<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="k">import</span> <span class="n">keras</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="k">import</span> <span class="n">layers</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="k">import</span> <span class="n">Sequential</span>
-</pre>
-<pre class="code ipython3 literal-block">
-<span class="kn">import</span> <span class="nn">pathlib</span>
-</pre>
-<div class="section" id="import-files">
-<h2>import files</h2>
-<pre class="code ipython3 literal-block">
-<span class="kn">import</span> <span class="nn">zipfile</span> <span class="k">as</span> <span class="nn">zf</span>
-</pre>
-<pre class="code ipython3 literal-block">
-<span class="n">files</span> <span class="o">=</span> <span class="n">zf</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s2">&quot;insects.zip&quot;</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span>
-<span class="n">files</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s1">'/home/jovyan/work/Assignments'</span><span class="p">)</span>
-<span class="n">files</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre>
-<pre class="code ipython3 literal-block">
-<span class="n">data_dir</span> <span class="o">=</span> <span class="s1">'/home/jovyan/work/Assignments/insects'</span>
-<span class="n">data_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
-</pre>
+<div class="section" id="import-data">
+<h2>Import data</h2>
 <pre class="code ipython3 literal-block">
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'test'</span><span class="p">,</span><span class="s1">'train'</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'beetles'</span><span class="p">,</span> <span class="s1">'cockroach'</span><span class="p">,</span> <span class="s1">'dragonflies'</span><span class="p">]:</span>
@@ -187,28 +161,13 @@ Found 1019 files belonging to 3 classes.
 <span class="n">test_ds</span> <span class="o">=</span> <span class="n">test_ds</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">AUTOTUNE</span><span class="p">)</span>
 </pre>
 </div>
-<div class="section" id="standardize-the-data">
-<h2>Standardize the data</h2>
-<pre class="code ipython3 literal-block">
-<span class="n">normalization_layer</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">Rescaling</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">)</span>
-</pre>
-<pre class="code ipython3 literal-block">
-<span class="n">normalized_ds</span> <span class="o">=</span> <span class="n">train_ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">normalization_layer</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">))</span>
-<span class="n">image_batch</span><span class="p">,</span> <span class="n">labels_batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">normalized_ds</span><span class="p">))</span>
-<span class="n">first_image</span> <span class="o">=</span> <span class="n">image_batch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="c1"># Notice the pixels values are now in `[0,1]`.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">first_image</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">first_image</span><span class="p">))</span>
-</pre>
-<pre class="literal-block">
-0.0 0.9743485
-</pre>
-</div>
 <div class="section" id="create-the-model">
 <h2>Create the model</h2>
 <pre class="code ipython3 literal-block">
-<span class="n">num_classes</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">num_classes</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+  <span class="n">layers</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">Rescaling</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">img_height</span><span class="p">,</span> <span class="n">img_width</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
   <span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">'same'</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
   <span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(),</span>
   <span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">'same'</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
@@ -236,28 +195,28 @@ Model: &quot;sequential&quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #
 =================================================================
-rescaling_1 (Rescaling)      (None, 180, 180, 3)       0
+rescaling_2 (Rescaling)      (None, 180, 180, 3)       0
 _________________________________________________________________
-conv2d (Conv2D)              (None, 180, 180, 16)      448
+conv2d_6 (Conv2D)            (None, 180, 180, 16)      448
 _________________________________________________________________
-max_pooling2d (MaxPooling2D) (None, 90, 90, 16)        0
+max_pooling2d_6 (MaxPooling2 (None, 90, 90, 16)        0
 _________________________________________________________________
-conv2d_1 (Conv2D)            (None, 90, 90, 32)        4640
+conv2d_7 (Conv2D)            (None, 90, 90, 32)        4640
 _________________________________________________________________
-max_pooling2d_1 (MaxPooling2 (None, 45, 45, 32)        0
+max_pooling2d_7 (MaxPooling2 (None, 45, 45, 32)        0
 _________________________________________________________________
-conv2d_2 (Conv2D)            (None, 45, 45, 64)        18496
+conv2d_8 (Conv2D)            (None, 45, 45, 64)        18496
 _________________________________________________________________
-max_pooling2d_2 (MaxPooling2 (None, 22, 22, 64)        0
+max_pooling2d_8 (MaxPooling2 (None, 22, 22, 64)        0
 _________________________________________________________________
-flatten (Flatten)            (None, 30976)             0
+flatten_2 (Flatten)          (None, 30976)             0
 _________________________________________________________________
-dense (Dense)                (None, 128)               3965056
+dense_4 (Dense)              (None, 128)               3965056
 _________________________________________________________________
-dense_1 (Dense)              (None, 5)                 645
+dense_5 (Dense)              (None, 3)                 387
 =================================================================
-Total params: 3,989,285
-Trainable params: 3,989,285
+Total params: 3,989,027
+Trainable params: 3,989,027
 Non-trainable params: 0
 _________________________________________________________________
 </pre>
@@ -320,7 +279,11 @@ Epoch 10/10
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Training and Validation Loss'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre>
-<img alt="Model performance" src="/images/output_27_0.png" />
+<img alt="Model performance" src="/images/output_24_0.png" />
+</div>
+<div class="section" id="references">
+<h2>References</h2>
+<p><a class="reference external" href="https://www.tensorflow.org/tutorials/images/classification">https://www.tensorflow.org/tutorials/images/classification</a></p>
 </div>
 
   </div>

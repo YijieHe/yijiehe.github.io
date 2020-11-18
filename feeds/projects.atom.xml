@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He - Projects</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/projects.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-11-16T00:00:00+00:00</updated><entry><title>A Deep Learning Model for Image Classification</title><link href="https://yijiehe.github.io/articles/a-deep-learning-model-for-image-classification.html" rel="alternate"></link><published>2020-11-16T00:00:00+00:00</published><updated>2020-11-16T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-11-16:/articles/a-deep-learning-model-for-image-classification.html</id><summary type="html">&lt;p class="first last"&gt;Train RNN to classify beetles, cockroach and dragonflies&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He - Projects</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/projects.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-11-16T00:00:00+00:00</updated><entry><title>A Deep Learning Model for Image Classification</title><link href="https://yijiehe.github.io/articles/a-deep-learning-model-for-image-classification.html" rel="alternate"></link><published>2020-11-16T00:00:00+00:00</published><updated>2020-11-16T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-11-16:/articles/a-deep-learning-model-for-image-classification.html</id><summary type="html">&lt;p class="first last"&gt;Train a convolutional neural network to classify beetles, cockroach and dragonflies using tensorflow&lt;/p&gt;
 </summary><content type="html">&lt;ol class="arabic simple" start="7"&gt;
 &lt;li&gt;Train a deep learning model to classify beetles, cockroaches and
 dragonflies using these
@@ -8,34 +8,8 @@ Note: Original images from &lt;a class="reference external" href="https://www.in
 Blog about this, and &lt;em&gt;explain&lt;/em&gt; how the neural network classified the
 images.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre class="code ipython3 literal-block"&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;PIL&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tensorflow&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;tf&lt;/span&gt;
-
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tensorflow&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;keras&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tensorflow.keras&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;layers&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tensorflow.keras.models&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Sequential&lt;/span&gt;
-&lt;/pre&gt;
-&lt;pre class="code ipython3 literal-block"&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pathlib&lt;/span&gt;
-&lt;/pre&gt;
-&lt;div class="section" id="import-files"&gt;
-&lt;h2&gt;import files&lt;/h2&gt;
-&lt;pre class="code ipython3 literal-block"&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;zipfile&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;zf&lt;/span&gt;
-&lt;/pre&gt;
-&lt;pre class="code ipython3 literal-block"&gt;
-&lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;zf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ZipFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;insects.zip&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'r'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extractall&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/jovyan/work/Assignments'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;
-&lt;pre class="code ipython3 literal-block"&gt;
-&lt;span class="n"&gt;data_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'/home/jovyan/work/Assignments/insects'&lt;/span&gt;
-&lt;span class="n"&gt;data_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pathlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data_dir&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="section" id="import-data"&gt;
+&lt;h2&gt;Import data&lt;/h2&gt;
 &lt;pre class="code ipython3 literal-block"&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'test'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'train'&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'beetles'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'cockroach'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'dragonflies'&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
@@ -105,28 +79,13 @@ Found 1019 files belonging to 3 classes.
 &lt;span class="n"&gt;test_ds&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;test_ds&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;prefetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buffer_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;AUTOTUNE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class="section" id="standardize-the-data"&gt;
-&lt;h2&gt;Standardize the data&lt;/h2&gt;
-&lt;pre class="code ipython3 literal-block"&gt;
-&lt;span class="n"&gt;normalization_layer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;layers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;experimental&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;preprocessing&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Rescaling&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;pre class="code ipython3 literal-block"&gt;
-&lt;span class="n"&gt;normalized_ds&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;train_ds&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;normalization_layer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;image_batch&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;labels_batch&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;next&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;normalized_ds&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;first_image&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;image_batch&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="c1"&gt;# Notice the pixels values are now in `[0,1]`.&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;first_image&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;first_image&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
-&lt;pre class="literal-block"&gt;
-0.0 0.9743485
-&lt;/pre&gt;
-&lt;/div&gt;
 &lt;div class="section" id="create-the-model"&gt;
 &lt;h2&gt;Create the model&lt;/h2&gt;
 &lt;pre class="code ipython3 literal-block"&gt;
-&lt;span class="n"&gt;num_classes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="n"&gt;num_classes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
 
 &lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Sequential&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;
+  &lt;span class="n"&gt;layers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;experimental&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;preprocessing&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Rescaling&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;input_shape&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img_height&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;img_width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
   &lt;span class="n"&gt;layers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Conv2D&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'same'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'relu'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
   &lt;span class="n"&gt;layers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MaxPooling2D&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
   &lt;span class="n"&gt;layers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Conv2D&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'same'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'relu'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
@@ -154,28 +113,28 @@ Model: &amp;quot;sequential&amp;quot;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #
 =================================================================
-rescaling_1 (Rescaling)      (None, 180, 180, 3)       0
+rescaling_2 (Rescaling)      (None, 180, 180, 3)       0
 _________________________________________________________________
-conv2d (Conv2D)              (None, 180, 180, 16)      448
+conv2d_6 (Conv2D)            (None, 180, 180, 16)      448
 _________________________________________________________________
-max_pooling2d (MaxPooling2D) (None, 90, 90, 16)        0
+max_pooling2d_6 (MaxPooling2 (None, 90, 90, 16)        0
 _________________________________________________________________
-conv2d_1 (Conv2D)            (None, 90, 90, 32)        4640
+conv2d_7 (Conv2D)            (None, 90, 90, 32)        4640
 _________________________________________________________________
-max_pooling2d_1 (MaxPooling2 (None, 45, 45, 32)        0
+max_pooling2d_7 (MaxPooling2 (None, 45, 45, 32)        0
 _________________________________________________________________
-conv2d_2 (Conv2D)            (None, 45, 45, 64)        18496
+conv2d_8 (Conv2D)            (None, 45, 45, 64)        18496
 _________________________________________________________________
-max_pooling2d_2 (MaxPooling2 (None, 22, 22, 64)        0
+max_pooling2d_8 (MaxPooling2 (None, 22, 22, 64)        0
 _________________________________________________________________
-flatten (Flatten)            (None, 30976)             0
+flatten_2 (Flatten)          (None, 30976)             0
 _________________________________________________________________
-dense (Dense)                (None, 128)               3965056
+dense_4 (Dense)              (None, 128)               3965056
 _________________________________________________________________
-dense_1 (Dense)              (None, 5)                 645
+dense_5 (Dense)              (None, 3)                 387
 =================================================================
-Total params: 3,989,285
-Trainable params: 3,989,285
+Total params: 3,989,027
+Trainable params: 3,989,027
 Non-trainable params: 0
 _________________________________________________________________
 &lt;/pre&gt;
@@ -238,7 +197,11 @@ Epoch 10/10
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Training and Validation Loss'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;
-&lt;img alt="Model performance" src="/images/output_27_0.png" /&gt;
+&lt;img alt="Model performance" src="/images/output_24_0.png" /&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.tensorflow.org/tutorials/images/classification"&gt;https://www.tensorflow.org/tutorials/images/classification&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Projects"></category></entry><entry><title>Interactive visualization of PhDs awarded in US</title><link href="https://yijiehe.github.io/articles/interactive-visualization-of-phds-awarded-in-us.html" rel="alternate"></link><published>2020-11-03T00:00:00+00:00</published><updated>2020-11-03T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-11-03:/articles/interactive-visualization-of-phds-awarded-in-us.html</id><summary type="html">&lt;p class="first last"&gt;Create dashboard of PhDs awarded in US data&lt;/p&gt;
 </summary><content type="html">&lt;div class="section" id="about-the-dataset"&gt;
