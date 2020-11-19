@@ -110,7 +110,7 @@ like to use statistical analysis to study the relationship between eggs and othe
 fatality rate of COVID-19, and analyze whether these suggestions may be effective. The results will be beneficial to
 all people who suffer from this pandemic and hope to protect themselves.</p>
 <p>The project ends up with a <a class="reference external" href="https://covid-19-823.herokuapp.com">dashboard</a>, deployed by my other teammates with
-streamlit, and predicted models using random forest, elastic net regression and grandient boosting.</p>
+streamlit, and predicted models using random forest, elastic net regression and gradient boosting.</p>
 </div>
 <div class="section" id="data-description">
 <h2>Data Description</h2>
@@ -306,7 +306,52 @@ highly-correlated variables. Based on the correlation plot below, we removed <em
 </div>
 <div class="section" id="model-fitting">
 <h2>Model Fitting</h2>
-<div class="section" id="gradient-boosting">
+<p>Among the threes models we fitted, random forest and gradient boosting are both ensemble learning methods that
+combines decision trees. A difference between them is that random forest uses bagging while gradient boosting uses
+boosting. The elastic net regression combines both l1 regularization (LASSO) and l2 regularization (Ridge) to a
+parametric model. The main point of the elastic net is to find a balance between the two regularization methods.
+The summary table of model output indicates that gradient boosting performs best regarding to both r2 score and mse.</p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>r2</th>
+      <th>mse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Random Forest</th>
+      <td>-5.988747</td>
+      <td>0.052877</td>
+    </tr>
+    <tr>
+      <th>Gradient Boosting</th>
+      <td>-3.802199</td>
+      <td>0.049865</td>
+    </tr>
+    <tr>
+      <th>Elastic Net</th>
+      <td>-6.227299</td>
+      <td>0.051916</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="section" id="gradient-boosting">
 <h3>Gradient Boosting</h3>
 <div class="section" id="mechamism">
 <h4>Mechamism</h4>

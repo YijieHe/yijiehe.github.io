@@ -28,7 +28,7 @@ like to use statistical analysis to study the relationship between eggs and othe
 fatality rate of COVID-19, and analyze whether these suggestions may be effective. The results will be beneficial to
 all people who suffer from this pandemic and hope to protect themselves.&lt;/p&gt;
 &lt;p&gt;The project ends up with a &lt;a class="reference external" href="https://covid-19-823.herokuapp.com"&gt;dashboard&lt;/a&gt;, deployed by my other teammates with
-streamlit, and predicted models using random forest, elastic net regression and grandient boosting.&lt;/p&gt;
+streamlit, and predicted models using random forest, elastic net regression and gradient boosting.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="data-description"&gt;
 &lt;h2&gt;Data Description&lt;/h2&gt;
@@ -224,7 +224,52 @@ highly-correlated variables. Based on the correlation plot below, we removed &lt
 &lt;/div&gt;
 &lt;div class="section" id="model-fitting"&gt;
 &lt;h2&gt;Model Fitting&lt;/h2&gt;
-&lt;div class="section" id="gradient-boosting"&gt;
+&lt;p&gt;Among the threes models we fitted, random forest and gradient boosting are both ensemble learning methods that
+combines decision trees. A difference between them is that random forest uses bagging while gradient boosting uses
+boosting. The elastic net regression combines both l1 regularization (LASSO) and l2 regularization (Ridge) to a
+parametric model. The main point of the elastic net is to find a balance between the two regularization methods.
+The summary table of model output indicates that gradient boosting performs best regarding to both r2 score and mse.&lt;/p&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;r2&lt;/th&gt;
+      &lt;th&gt;mse&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Random Forest&lt;/th&gt;
+      &lt;td&gt;-5.988747&lt;/td&gt;
+      &lt;td&gt;0.052877&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Gradient Boosting&lt;/th&gt;
+      &lt;td&gt;-3.802199&lt;/td&gt;
+      &lt;td&gt;0.049865&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Elastic Net&lt;/th&gt;
+      &lt;td&gt;-6.227299&lt;/td&gt;
+      &lt;td&gt;0.051916&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;div class="section" id="gradient-boosting"&gt;
 &lt;h3&gt;Gradient Boosting&lt;/h3&gt;
 &lt;div class="section" id="mechamism"&gt;
 &lt;h4&gt;Mechamism&lt;/h4&gt;
