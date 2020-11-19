@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="../theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="https://yijiehe.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Yijie He Atom">
+
+
+
+
+
+<meta name="author" content="Yijie" />
+<meta name="description" content="Dashboard for covid-19 status in the world and exploration of covid recovery and nutrition status" />
+<meta name="keywords" content="">
+
+<meta property="og:site_name" content="Yijie He"/>
+<meta property="og:title" content="Covid-19 and Nutrition in Food"/>
+<meta property="og:description" content="Dashboard for covid-19 status in the world and exploration of covid recovery and nutrition status"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="../articles/covid-19-and-nutrition-in-food.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-11-18 00:00:00+00:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="../author/yijie.html">
+<meta property="article:section" content="Projects"/>
+<meta property="og:image" content="">
+
+  <title>Yijie He &ndash; Covid-19 and Nutrition in Food</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="..">
+        <img src="../theme/img/profile.png" alt="" title="">
+      </a>
+      <h1><a href=".."></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="../pages/About.html#About">About</a></li>
+          <li><a href="../pages/Contact.html#Contact">Contact</a></li>
+          <li><a href="../pages/Project.html#Project">Project</a></li>
+
+          <li><a href="https://www.linkedin.com/in/yijie-he/" target="_blank">LinkedIn</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+      
+    <h1 id="covid-19-and-nutrition-in-food">Covid-19 and Nutrition in Food</h1>
+    <p>
+          Posted on Wed 18 November 2020 in <a href="../category/projects.html">Projects</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>This is part of the final project for BIOSTAT 823. My team members are:</p>
+<ul class="simple">
+<li>Linlin Li (Master's in Statistical Science program)</li>
+<li>Mingxuan Yang (Master's in Statistical Science program)</li>
+<li>Yijie He (Master's of Biostatistics program)</li>
+<li>Zilin Yin (Master's in Civil and Environmental Engineering program)</li>
+</ul>
+<p>Roles, responsibilities for each team member:</p>
+<ul class="simple">
+<li>Linlin Li: Literature review, Dashboard</li>
+<li>Mingxuan Yang: Data analysis, Dashboard</li>
+<li>Yijie He: Data management, Machine Learning Models</li>
+<li>Zilin Yin: Machine Learning Models</li>
+</ul>
+<div class="section" id="background">
+<h2>Background</h2>
+<p>In the past few months, we have witnessed doctors, nurses, and thousands of medical staff putting their lives on the
+front line to save infected patients. As the battle against COVID-19 continues, we should all ask ourselves what s
+hould we do to help? What can we do to protect our loved ones, those who sacrificed for us, and ourselves from this
+pandemic? One possible way to protect the health of our family and ourselves is to adapt to healthy eating habits.</p>
+<p>The Center for Nutrition Policy and Promotion (CNPP) recommends a very simple daily dietary intake: 30% grains,
+40% vegetables, 10% fruits, and 20% protein, but do we really follow the recommendations of these food to eat a healthy
+diet? Do we need to adjust our eating habits based on the diet patterns of countries with a low COVID-19 infection rate?</p>
+<p>In China, some doctors recommend that people eat more eggs and drink more milk to improve their immunity. We would
+like to use statistical analysis to study the relationship between eggs and other foods and the infection rate and
+fatality rate of COVID-19, and analyze whether these suggestions may be effective. The results will be beneficial to
+all people who suffer from this pandemic and hope to protect themselves.</p>
+<p>The project ends up with a <a class="reference external" href="https://covid-19-823.herokuapp.com">dashboard</a>, deployed by my other teammates with
+streamlit, and predicted models using random forest, elastic net regression and grandient boosting.</p>
+</div>
+<div class="section" id="data-description">
+<h2>Data Description</h2>
+<p>Our dataset include food supply information, number of confirmed, recovery cases of covid-19 from 170 countries
+up to Nov 8th, 2020. Hence we were able to calculate the recovery rate from this dataset.</p>
+<pre class="code ipython3 literal-block">
+<span class="c1"># Exclude unnecessary columns</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">'number'</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Alcoholic Beverages</th>
+      <th>Animal fats</th>
+      <th>Animal Products</th>
+      <th>Aquatic Products, Other</th>
+      <th>Cereals - Excluding Beer</th>
+      <th>Eggs</th>
+      <th>Fish, Seafood</th>
+      <th>Fruits - Excluding Wine</th>
+      <th>Meat</th>
+      <th>Milk - Excluding Butter</th>
+      <th>...</th>
+      <th>Treenuts</th>
+      <th>Vegetable Oils</th>
+      <th>Vegetables</th>
+      <th>Vegetal Products</th>
+      <th>Obesity</th>
+      <th>Confirmed</th>
+      <th>Deaths</th>
+      <th>Recovered</th>
+      <th>Active</th>
+      <th>Population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0014</td>
+      <td>0.1973</td>
+      <td>9.4341</td>
+      <td>0.0</td>
+      <td>24.8097</td>
+      <td>0.2099</td>
+      <td>0.0350</td>
+      <td>5.3495</td>
+      <td>1.2020</td>
+      <td>7.5828</td>
+      <td>...</td>
+      <td>0.0770</td>
+      <td>0.5345</td>
+      <td>6.7642</td>
+      <td>40.5645</td>
+      <td>4.5</td>
+      <td>0.108128</td>
+      <td>0.004002</td>
+      <td>0.088517</td>
+      <td>0.015608</td>
+      <td>38928000.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.6719</td>
+      <td>0.1357</td>
+      <td>18.7684</td>
+      <td>0.0</td>
+      <td>5.7817</td>
+      <td>0.5815</td>
+      <td>0.2126</td>
+      <td>6.7861</td>
+      <td>1.8845</td>
+      <td>15.7213</td>
+      <td>...</td>
+      <td>0.1515</td>
+      <td>0.3261</td>
+      <td>11.7753</td>
+      <td>31.2304</td>
+      <td>22.3</td>
+      <td>0.852925</td>
+      <td>0.019697</td>
+      <td>0.426075</td>
+      <td>0.407153</td>
+      <td>2838000.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.2711</td>
+      <td>0.0282</td>
+      <td>9.6334</td>
+      <td>0.0</td>
+      <td>13.6816</td>
+      <td>0.5277</td>
+      <td>0.2416</td>
+      <td>6.3801</td>
+      <td>1.1305</td>
+      <td>7.6189</td>
+      <td>...</td>
+      <td>0.1152</td>
+      <td>1.0310</td>
+      <td>11.6484</td>
+      <td>40.3651</td>
+      <td>26.6</td>
+      <td>0.139890</td>
+      <td>0.004617</td>
+      <td>0.094770</td>
+      <td>0.040503</td>
+      <td>44357000.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.8087</td>
+      <td>0.0560</td>
+      <td>4.9278</td>
+      <td>0.0</td>
+      <td>9.1085</td>
+      <td>0.0587</td>
+      <td>1.7707</td>
+      <td>6.0005</td>
+      <td>2.0571</td>
+      <td>0.8311</td>
+      <td>...</td>
+      <td>0.0061</td>
+      <td>0.6463</td>
+      <td>2.3041</td>
+      <td>45.0722</td>
+      <td>6.8</td>
+      <td>0.038230</td>
+      <td>0.000944</td>
+      <td>0.018138</td>
+      <td>0.019147</td>
+      <td>32522000.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.5764</td>
+      <td>0.0087</td>
+      <td>16.6613</td>
+      <td>0.0</td>
+      <td>5.9960</td>
+      <td>0.2274</td>
+      <td>4.1489</td>
+      <td>10.7451</td>
+      <td>5.6888</td>
+      <td>6.3663</td>
+      <td>...</td>
+      <td>0.0253</td>
+      <td>0.8102</td>
+      <td>5.4495</td>
+      <td>33.3233</td>
+      <td>19.1</td>
+      <td>0.133673</td>
+      <td>0.003061</td>
+      <td>0.124490</td>
+      <td>0.006122</td>
+      <td>98000.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 29 columns</p>
+</div></div>
+<div class="section" id="preprocessing">
+<h2>Preprocessing</h2>
+<div class="section" id="missingness">
+<h3>Missingness</h3>
+<img alt="missingness plot" src="/images/missing.png" />
+<p>There are some missingness for some of the variables. Since each country, considering its economic status,
+may have similar food consumption trends for each kind of food, we imputed the missing values with
+<strong>IterativeImputer</strong> in scikitlearn. It is a multivariate imputer that imputes variables in a regression fashion.</p>
+</div>
+<div class="section" id="relatedness-of-features">
+<h3>Relatedness of features</h3>
+<p>Since multicollinearity could be a problem in tree-based methods and variable importance, we decided to remove
+highly-correlated variables. Based on the correlation plot below, we removed <em>animal products</em> and
+<em>Milk - Excluding Butter</em> from data.</p>
+<img alt="missingness plot" src="/images/correlation.png" />
+</div>
+</div>
+<div class="section" id="model-fitting">
+<h2>Model Fitting</h2>
+<div class="section" id="gradient-boosting">
+<h3>Gradient Boosting</h3>
+<div class="section" id="mechamism">
+<h4>Mechamism</h4>
+<p>Gradient boosting is a machine learning technique for regression and classification problems, which produces
+a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the
+model in a stage-wise fashion like other boosting methods do, and it generalizes them by allowing optimization of
+an arbitrary differentiable loss function. Gradient boosting involves three elements:</p>
+<ul class="simple">
+<li>A loss function to be optimized.</li>
+<li>A weak learner to make predictions.</li>
+<li>An additive model to add weak learners to minimize the loss function.</li>
+</ul>
+</div>
+<div class="section" id="hyperparameter-tuning">
+<h4>Hyperparameter tuning</h4>
+<p>To select the parameters that give the performance, a hyperparameter tuning is required. There are 5 parameters
+we tried to tune.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Learning rate</dt>
+<dd>It controls the shrinkage amount for each added weak learner</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Number of trees</dt>
+<dd>It is the number of boosting iterations</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>depth</dt>
+<dd>It is the size of a single tree. Since we are combining a bunch of weak learners, we probably do not
+want a individual tree to be too large</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>max features</dt>
+<dd>The number of features used in tree growth</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>minimum samples per leaf</dt>
+<dd>Minimum observations in each branch of a tree</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="training">
+<h4>Training</h4>
+<pre class="code ipython3 literal-block">
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">GradientBoostingRegressor</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">params_gbm</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'learning_rate'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span>
+    <span class="s1">'max_features'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">'sqrt'</span><span class="p">,</span> <span class="s1">'log'</span><span class="p">],</span>
+    <span class="s1">'n_estimators'</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">125</span><span class="p">],</span>
+    <span class="s1">'max_depth'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span>
+    <span class="s1">'min_samples_leaf'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span>
+<span class="p">}</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="n">gbm</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span>
+</pre>
+<pre class="code ipython3 literal-block">
+<span class="o">%%time</span>
+<span class="n">gbm_grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">gbm</span><span class="p">,</span>
+    <span class="n">params_gbm</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">cv</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre>
+<pre class="literal-block">
+CPU times: user 4.57 s, sys: 68 ms, total: 4.64 s
+Wall time: 31.5 s
+</pre>
+</div>
+<div class="section" id="results">
+<h4>Results</h4>
+<p>Based on the model output, we finally get a MSE of 0.0498 for test data. By the variable importance plot,
+<strong>vegetal products</strong> and <strong>pulses</strong> appeared in top rank for both training and test data. Therefore, these two
+kinds of food may play an important role in curing covid. However, a major limit of out data is that each country
+definitily has different health care systems and social-economic status. This situation is a confounder for our results.</p>
+<p><strong>Deviance Trace</strong></p>
+<img alt="deviance plot" src="/images/deviance.png" />
+<p><strong>Variable Importance</strong></p>
+<img alt="variable importance plot" src="/images/vi.png" />
+</div>
+</div>
+</div>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Yijie He ",
+  "url" : "..",
+  "image": "",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

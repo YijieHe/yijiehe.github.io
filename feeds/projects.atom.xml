@@ -1,5 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He - Projects</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/projects.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-11-16T00:00:00+00:00</updated><entry><title>A Deep Learning Model for Image Classification</title><link href="https://yijiehe.github.io/articles/a-deep-learning-model-for-image-classification.html" rel="alternate"></link><published>2020-11-16T00:00:00+00:00</published><updated>2020-11-16T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-11-16:/articles/a-deep-learning-model-for-image-classification.html</id><summary type="html">&lt;p class="first last"&gt;Train a convolutional neural network to classify beetles, cockroach and dragonflies using tensorflow&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yijie He - Projects</title><link href="https://yijiehe.github.io/" rel="alternate"></link><link href="https://yijiehe.github.io/feeds/projects.atom.xml" rel="self"></link><id>https://yijiehe.github.io/</id><updated>2020-11-18T00:00:00+00:00</updated><entry><title>Covid-19 and Nutrition in Food</title><link href="https://yijiehe.github.io/articles/covid-19-and-nutrition-in-food.html" rel="alternate"></link><published>2020-11-18T00:00:00+00:00</published><updated>2020-11-18T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-11-18:/articles/covid-19-and-nutrition-in-food.html</id><summary type="html">&lt;p class="first last"&gt;Dashboard for covid-19 status in the world and exploration of covid recovery and nutrition status&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This is part of the final project for BIOSTAT 823. My team members are:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Linlin Li (Master's in Statistical Science program)&lt;/li&gt;
+&lt;li&gt;Mingxuan Yang (Master's in Statistical Science program)&lt;/li&gt;
+&lt;li&gt;Yijie He (Master's of Biostatistics program)&lt;/li&gt;
+&lt;li&gt;Zilin Yin (Master's in Civil and Environmental Engineering program)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Roles, responsibilities for each team member:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Linlin Li: Literature review, Dashboard&lt;/li&gt;
+&lt;li&gt;Mingxuan Yang: Data analysis, Dashboard&lt;/li&gt;
+&lt;li&gt;Yijie He: Data management, Machine Learning Models&lt;/li&gt;
+&lt;li&gt;Zilin Yin: Machine Learning Models&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="background"&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;In the past few months, we have witnessed doctors, nurses, and thousands of medical staff putting their lives on the
+front line to save infected patients. As the battle against COVID-19 continues, we should all ask ourselves what s
+hould we do to help? What can we do to protect our loved ones, those who sacrificed for us, and ourselves from this
+pandemic? One possible way to protect the health of our family and ourselves is to adapt to healthy eating habits.&lt;/p&gt;
+&lt;p&gt;The Center for Nutrition Policy and Promotion (CNPP) recommends a very simple daily dietary intake: 30% grains,
+40% vegetables, 10% fruits, and 20% protein, but do we really follow the recommendations of these food to eat a healthy
+diet? Do we need to adjust our eating habits based on the diet patterns of countries with a low COVID-19 infection rate?&lt;/p&gt;
+&lt;p&gt;In China, some doctors recommend that people eat more eggs and drink more milk to improve their immunity. We would
+like to use statistical analysis to study the relationship between eggs and other foods and the infection rate and
+fatality rate of COVID-19, and analyze whether these suggestions may be effective. The results will be beneficial to
+all people who suffer from this pandemic and hope to protect themselves.&lt;/p&gt;
+&lt;p&gt;The project ends up with a &lt;a class="reference external" href="https://covid-19-823.herokuapp.com"&gt;dashboard&lt;/a&gt;, deployed by my other teammates with
+streamlit, and predicted models using random forest, elastic net regression and grandient boosting.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="data-description"&gt;
+&lt;h2&gt;Data Description&lt;/h2&gt;
+&lt;p&gt;Our dataset include food supply information, number of confirmed, recovery cases of covid-19 from 170 countries
+up to Nov 8th, 2020. Hence we were able to calculate the recovery rate from this dataset.&lt;/p&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="c1"&gt;# Exclude unnecessary columns&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select_dtypes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'number'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;Alcoholic Beverages&lt;/th&gt;
+      &lt;th&gt;Animal fats&lt;/th&gt;
+      &lt;th&gt;Animal Products&lt;/th&gt;
+      &lt;th&gt;Aquatic Products, Other&lt;/th&gt;
+      &lt;th&gt;Cereals - Excluding Beer&lt;/th&gt;
+      &lt;th&gt;Eggs&lt;/th&gt;
+      &lt;th&gt;Fish, Seafood&lt;/th&gt;
+      &lt;th&gt;Fruits - Excluding Wine&lt;/th&gt;
+      &lt;th&gt;Meat&lt;/th&gt;
+      &lt;th&gt;Milk - Excluding Butter&lt;/th&gt;
+      &lt;th&gt;...&lt;/th&gt;
+      &lt;th&gt;Treenuts&lt;/th&gt;
+      &lt;th&gt;Vegetable Oils&lt;/th&gt;
+      &lt;th&gt;Vegetables&lt;/th&gt;
+      &lt;th&gt;Vegetal Products&lt;/th&gt;
+      &lt;th&gt;Obesity&lt;/th&gt;
+      &lt;th&gt;Confirmed&lt;/th&gt;
+      &lt;th&gt;Deaths&lt;/th&gt;
+      &lt;th&gt;Recovered&lt;/th&gt;
+      &lt;th&gt;Active&lt;/th&gt;
+      &lt;th&gt;Population&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;0.0014&lt;/td&gt;
+      &lt;td&gt;0.1973&lt;/td&gt;
+      &lt;td&gt;9.4341&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;24.8097&lt;/td&gt;
+      &lt;td&gt;0.2099&lt;/td&gt;
+      &lt;td&gt;0.0350&lt;/td&gt;
+      &lt;td&gt;5.3495&lt;/td&gt;
+      &lt;td&gt;1.2020&lt;/td&gt;
+      &lt;td&gt;7.5828&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;0.0770&lt;/td&gt;
+      &lt;td&gt;0.5345&lt;/td&gt;
+      &lt;td&gt;6.7642&lt;/td&gt;
+      &lt;td&gt;40.5645&lt;/td&gt;
+      &lt;td&gt;4.5&lt;/td&gt;
+      &lt;td&gt;0.108128&lt;/td&gt;
+      &lt;td&gt;0.004002&lt;/td&gt;
+      &lt;td&gt;0.088517&lt;/td&gt;
+      &lt;td&gt;0.015608&lt;/td&gt;
+      &lt;td&gt;38928000.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;1.6719&lt;/td&gt;
+      &lt;td&gt;0.1357&lt;/td&gt;
+      &lt;td&gt;18.7684&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;5.7817&lt;/td&gt;
+      &lt;td&gt;0.5815&lt;/td&gt;
+      &lt;td&gt;0.2126&lt;/td&gt;
+      &lt;td&gt;6.7861&lt;/td&gt;
+      &lt;td&gt;1.8845&lt;/td&gt;
+      &lt;td&gt;15.7213&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;0.1515&lt;/td&gt;
+      &lt;td&gt;0.3261&lt;/td&gt;
+      &lt;td&gt;11.7753&lt;/td&gt;
+      &lt;td&gt;31.2304&lt;/td&gt;
+      &lt;td&gt;22.3&lt;/td&gt;
+      &lt;td&gt;0.852925&lt;/td&gt;
+      &lt;td&gt;0.019697&lt;/td&gt;
+      &lt;td&gt;0.426075&lt;/td&gt;
+      &lt;td&gt;0.407153&lt;/td&gt;
+      &lt;td&gt;2838000.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;0.2711&lt;/td&gt;
+      &lt;td&gt;0.0282&lt;/td&gt;
+      &lt;td&gt;9.6334&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;13.6816&lt;/td&gt;
+      &lt;td&gt;0.5277&lt;/td&gt;
+      &lt;td&gt;0.2416&lt;/td&gt;
+      &lt;td&gt;6.3801&lt;/td&gt;
+      &lt;td&gt;1.1305&lt;/td&gt;
+      &lt;td&gt;7.6189&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;0.1152&lt;/td&gt;
+      &lt;td&gt;1.0310&lt;/td&gt;
+      &lt;td&gt;11.6484&lt;/td&gt;
+      &lt;td&gt;40.3651&lt;/td&gt;
+      &lt;td&gt;26.6&lt;/td&gt;
+      &lt;td&gt;0.139890&lt;/td&gt;
+      &lt;td&gt;0.004617&lt;/td&gt;
+      &lt;td&gt;0.094770&lt;/td&gt;
+      &lt;td&gt;0.040503&lt;/td&gt;
+      &lt;td&gt;44357000.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;5.8087&lt;/td&gt;
+      &lt;td&gt;0.0560&lt;/td&gt;
+      &lt;td&gt;4.9278&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;9.1085&lt;/td&gt;
+      &lt;td&gt;0.0587&lt;/td&gt;
+      &lt;td&gt;1.7707&lt;/td&gt;
+      &lt;td&gt;6.0005&lt;/td&gt;
+      &lt;td&gt;2.0571&lt;/td&gt;
+      &lt;td&gt;0.8311&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;0.0061&lt;/td&gt;
+      &lt;td&gt;0.6463&lt;/td&gt;
+      &lt;td&gt;2.3041&lt;/td&gt;
+      &lt;td&gt;45.0722&lt;/td&gt;
+      &lt;td&gt;6.8&lt;/td&gt;
+      &lt;td&gt;0.038230&lt;/td&gt;
+      &lt;td&gt;0.000944&lt;/td&gt;
+      &lt;td&gt;0.018138&lt;/td&gt;
+      &lt;td&gt;0.019147&lt;/td&gt;
+      &lt;td&gt;32522000.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;3.5764&lt;/td&gt;
+      &lt;td&gt;0.0087&lt;/td&gt;
+      &lt;td&gt;16.6613&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;5.9960&lt;/td&gt;
+      &lt;td&gt;0.2274&lt;/td&gt;
+      &lt;td&gt;4.1489&lt;/td&gt;
+      &lt;td&gt;10.7451&lt;/td&gt;
+      &lt;td&gt;5.6888&lt;/td&gt;
+      &lt;td&gt;6.3663&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;0.0253&lt;/td&gt;
+      &lt;td&gt;0.8102&lt;/td&gt;
+      &lt;td&gt;5.4495&lt;/td&gt;
+      &lt;td&gt;33.3233&lt;/td&gt;
+      &lt;td&gt;19.1&lt;/td&gt;
+      &lt;td&gt;0.133673&lt;/td&gt;
+      &lt;td&gt;0.003061&lt;/td&gt;
+      &lt;td&gt;0.124490&lt;/td&gt;
+      &lt;td&gt;0.006122&lt;/td&gt;
+      &lt;td&gt;98000.0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;5 rows × 29 columns&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="section" id="preprocessing"&gt;
+&lt;h2&gt;Preprocessing&lt;/h2&gt;
+&lt;div class="section" id="missingness"&gt;
+&lt;h3&gt;Missingness&lt;/h3&gt;
+&lt;img alt="missingness plot" src="/images/missing.png" /&gt;
+&lt;p&gt;There are some missingness for some of the variables. Since each country, considering its economic status,
+may have similar food consumption trends for each kind of food, we imputed the missing values with
+&lt;strong&gt;IterativeImputer&lt;/strong&gt; in scikitlearn. It is a multivariate imputer that imputes variables in a regression fashion.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="relatedness-of-features"&gt;
+&lt;h3&gt;Relatedness of features&lt;/h3&gt;
+&lt;p&gt;Since multicollinearity could be a problem in tree-based methods and variable importance, we decided to remove
+highly-correlated variables. Based on the correlation plot below, we removed &lt;em&gt;animal products&lt;/em&gt; and
+&lt;em&gt;Milk - Excluding Butter&lt;/em&gt; from data.&lt;/p&gt;
+&lt;img alt="missingness plot" src="/images/correlation.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="model-fitting"&gt;
+&lt;h2&gt;Model Fitting&lt;/h2&gt;
+&lt;div class="section" id="gradient-boosting"&gt;
+&lt;h3&gt;Gradient Boosting&lt;/h3&gt;
+&lt;div class="section" id="mechamism"&gt;
+&lt;h4&gt;Mechamism&lt;/h4&gt;
+&lt;p&gt;Gradient boosting is a machine learning technique for regression and classification problems, which produces
+a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the
+model in a stage-wise fashion like other boosting methods do, and it generalizes them by allowing optimization of
+an arbitrary differentiable loss function. Gradient boosting involves three elements:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A loss function to be optimized.&lt;/li&gt;
+&lt;li&gt;A weak learner to make predictions.&lt;/li&gt;
+&lt;li&gt;An additive model to add weak learners to minimize the loss function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hyperparameter-tuning"&gt;
+&lt;h4&gt;Hyperparameter tuning&lt;/h4&gt;
+&lt;p&gt;To select the parameters that give the performance, a hyperparameter tuning is required. There are 5 parameters
+we tried to tune.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;Learning rate&lt;/dt&gt;
+&lt;dd&gt;It controls the shrinkage amount for each added weak learner&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;Number of trees&lt;/dt&gt;
+&lt;dd&gt;It is the number of boosting iterations&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;depth&lt;/dt&gt;
+&lt;dd&gt;It is the size of a single tree. Since we are combining a bunch of weak learners, we probably do not
+want a individual tree to be too large&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;max features&lt;/dt&gt;
+&lt;dd&gt;The number of features used in tree growth&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;minimum samples per leaf&lt;/dt&gt;
+&lt;dd&gt;Minimum observations in each branch of a tree&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="training"&gt;
+&lt;h4&gt;Training&lt;/h4&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.ensemble&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GradientBoostingRegressor&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;params_gbm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;'learning_rate'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s1"&gt;'max_features'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'sqrt'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'log'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s1"&gt;'n_estimators'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;75&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;125&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s1"&gt;'max_depth'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s1"&gt;'min_samples_leaf'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="n"&gt;gbm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GradientBoostingRegressor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;random_state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code ipython3 literal-block"&gt;
+&lt;span class="o"&gt;%%time&lt;/span&gt;
+&lt;span class="n"&gt;gbm_grid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GridSearchCV&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;gbm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;params_gbm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;n_jobs&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+CPU times: user 4.57 s, sys: 68 ms, total: 4.64 s
+Wall time: 31.5 s
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="results"&gt;
+&lt;h4&gt;Results&lt;/h4&gt;
+&lt;p&gt;Based on the model output, we finally get a MSE of 0.0498 for test data. By the variable importance plot,
+&lt;strong&gt;vegetal products&lt;/strong&gt; and &lt;strong&gt;pulses&lt;/strong&gt; appeared in top rank for both training and test data. Therefore, these two
+kinds of food may play an important role in curing covid. However, a major limit of out data is that each country
+definitily has different health care systems and social-economic status. This situation is a confounder for our results.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Deviance Trace&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="deviance plot" src="/images/deviance.png" /&gt;
+&lt;p&gt;&lt;strong&gt;Variable Importance&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="variable importance plot" src="/images/vi.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Projects"></category></entry><entry><title>A Deep Learning Model for Image Classification</title><link href="https://yijiehe.github.io/articles/a-deep-learning-model-for-image-classification.html" rel="alternate"></link><published>2020-11-16T00:00:00+00:00</published><updated>2020-11-16T00:00:00+00:00</updated><author><name>Yijie</name></author><id>tag:yijiehe.github.io,2020-11-16:/articles/a-deep-learning-model-for-image-classification.html</id><summary type="html">&lt;p class="first last"&gt;Train a convolutional neural network to classify beetles, cockroach and dragonflies using tensorflow&lt;/p&gt;
 </summary><content type="html">&lt;div class="section" id="intro"&gt;
 &lt;h2&gt;Intro&lt;/h2&gt;
 &lt;p&gt;Convolutinal networks is a class of deep learning models that is widely used for image classification. Its architecture
