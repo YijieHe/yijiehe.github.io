@@ -255,6 +255,25 @@ create graphics explicitly.</p>
 <h2>Visualization</h2>
 <div class="section" id="mapping-malaria-incidence-by-country">
 <h3><em>Mapping malaria incidence by country</em></h3>
+<p>The mapping plots are plotted with <strong>pandas_bokeh</strong> package. Users can interact with the figure
+with customized slider. Based on the two mapping plot, it can be observed that the majority of malaria incidence
+and death were in Africa and middle east area.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">slider_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2015</span><span class="p">]</span>
+<span class="n">slider_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">i</span> for i in slider_range]
+
+<span class="n">inc_geo</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">plot_bokeh</span><span class="p">(</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">900</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+    <span class="n">simplify_shapes</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+    <span class="n">slider</span><span class="o">=</span><span class="n">slider_columns</span><span class="p">,</span>
+    <span class="n">slider_range</span><span class="o">=</span><span class="n">slider_range</span><span class="p">,</span>
+    <span class="n">slider_name</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span>
+    <span class="n">colormap</span> <span class="o">=</span> <span class="s2">&quot;RdBu&quot;</span><span class="p">,</span>
+    <span class="n">hovertool_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Entity'</span><span class="p">],</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Annual incidence from malaria by countries [per 100,000 population at risk]&quot;</span>
+
+<span class="p">)</span>
+</pre>
 <img alt="mapplot of malaria incidence across the world." src="/images/worldmap_inc.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -262,6 +281,22 @@ create graphics explicitly.</p>
 </div>
 <div class="section" id="mapping-annual-death-rate-from-malaria-by-country">
 <h3><em>Mapping annual death rate from malaria by country</em></h3>
+<pre class="code ipython3 literal-block">
+<span class="n">slider_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">2017</span><span class="p">)</span>
+<span class="n">slider_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">i</span> for i in range(1990, 2017)]
+
+<span class="n">death_geo</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">plot_bokeh</span><span class="p">(</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">900</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+    <span class="n">simplify_shapes</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+    <span class="n">slider</span><span class="o">=</span><span class="n">slider_columns</span><span class="p">,</span>
+    <span class="n">slider_range</span><span class="o">=</span><span class="n">slider_range</span><span class="p">,</span>
+    <span class="n">slider_name</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span>
+    <span class="n">colormap</span> <span class="o">=</span> <span class="s2">&quot;RdBu&quot;</span><span class="p">,</span>
+    <span class="n">hovertool_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Entity'</span><span class="p">],</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Annual death from malaria by countries [per 100,000 people]&quot;</span>
+
+<span class="p">)</span>
+</pre>
 <img alt="" src="/images/worldmap_death.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -269,6 +304,18 @@ create graphics explicitly.</p>
 </div>
 <div class="section" id="worldwide-death-from-malaria-summary-by-age-group">
 <h3><em>Worldwide death from malaria summary by age group</em></h3>
+<p>The major population that died from malaria is children less than 5 years old.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">world_da</span><span class="o">.</span><span class="n">plot_bokeh</span><span class="o">.</span><span class="n">area</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
+    <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;bottom_left&quot;</span><span class="p">,</span>
+    <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;Spectral&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Worldwide annual death from malaria by age group [per 100,000 population]&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">xticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">1995</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2015</span><span class="p">]</span>
+<span class="p">)</span>
+</pre>
 <img alt="" src="/images/age_group.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -276,6 +323,13 @@ create graphics explicitly.</p>
 </div>
 <div class="section" id="malaria-incidence-of-by-income-group">
 <h3><em>Malaria incidence of by income group</em></h3>
+<p>The <strong>plotnine</strong> package is an python implementation of <strong>ggplot</strong>. Exactly the same
+ggplot commands can be procssed as in R.</p>
+<pre class="code ipython3 literal-block">
+<span class="n">ggplot</span><span class="p">(</span><span class="n">income_melt</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="s1">'variable'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s1">'Entity'</span><span class="p">))</span> \
+<span class="o">+</span> <span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span> <span class="o">=</span> <span class="s1">'identity'</span><span class="p">)</span> <span class="o">+</span> <span class="n">xlab</span><span class="p">(</span><span class="s1">'year'</span><span class="p">)</span> <span class="o">+</span> <span class="n">ylab</span><span class="p">(</span><span class="s1">'Incidence per 100,000'</span><span class="p">)</span> \
+<span class="o">+</span> <span class="n">labs</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s1">'Income group'</span><span class="p">)</span> <span class="o">+</span> <span class="n">ggtitle</span><span class="p">(</span><span class="s1">'Malaria incidence by income group'</span><span class="p">)</span>
+</pre>
 <img alt="" src="/images/income_group.png" />
 </div>
 </div>
